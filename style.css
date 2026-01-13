@@ -13,10 +13,9 @@ body {
     padding: 1rem;
 }
 
-/* Шапка (яркая) */
+/* Шапка (светлая) */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* градиент */
-    color: white;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0eafc 100%); /* светлый градиент как у сайта */
     text-align: center;
     padding: 3rem 1rem;
     border-radius: 15px;
@@ -25,15 +24,24 @@ body {
 }
 
 .hero h1 {
-    font-size: 3rem; /* больше текст */
+    font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* тень */
+    /* Градиентный текст: светлый → тёмный */
+    background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .hero p {
-    font-size: 1.5rem; /* больше текст */
+    font-size: 1.5rem;
     font-weight: 500;
+    /* Градиентный текст: светлый → тёмный */
+    background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 /* Основной контент */
@@ -44,7 +52,7 @@ body {
 
 /* Карточки */
 .card {
-    background: rgba(255, 255, 255, 0.95); /* почти белый */
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 1.5rem;
@@ -57,18 +65,24 @@ body {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
+/* Заголовки с градиентом */
 .card h2 {
     color: #4a5568;
     margin-bottom: 1rem;
-    font-size: 2rem; /* больше текст */
+    font-size: 2rem;
     font-weight: bold;
-    border-bottom: 3px solid #667eea; /* толще линия */
+    /* Градиентный текст: светлый → тёмный */
+    background: linear-gradient(to bottom, #ffffff 0%, #4a5568 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border-bottom: 3px solid #667eea;
     padding-bottom: 0.5rem;
 }
 
 .card p {
     margin-bottom: 1rem;
-    font-size: 1.2rem; /* больше текст */
+    font-size: 1.2rem;
     line-height: 1.6;
 }
 
@@ -83,7 +97,7 @@ body {
     margin: 0.25rem 0;
     border-radius: 8px;
     border-left: 4px solid #667eea;
-    font-size: 1.1rem; /* больше текст */
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
@@ -99,7 +113,7 @@ body {
 .project-item h3 {
     color: #2d3748;
     margin-bottom: 0.5rem;
-    font-size: 1.4rem; /* больше текст */
+    font-size: 1.4rem;
     font-weight: bold;
 }
 
@@ -107,7 +121,7 @@ body {
     color: #667eea;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem; /* больше текст */
+    font-size: 1.1rem;
 }
 
 .project-item a:hover {
@@ -119,7 +133,7 @@ body {
     color: #667eea;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem; /* больше текст */
+    font-size: 1.1rem;
 }
 
 .contact a:hover {
@@ -134,7 +148,7 @@ footer {
     color: white;
     margin-top: 2rem;
     border-radius: 10px;
-    font-size: 1.1rem; /* больше текст */
+    font-size: 1.1rem;
 }
 
 /* Адаптив */
