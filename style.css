@@ -10,7 +10,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #000000 0%, #2d3748 50%, #4a5568 100%); /* чёрный → серый */
     min-height: 100vh;
-    color: white; /* белый текст */
+    color: white;
     padding: 1rem;
 }
 
@@ -22,6 +22,17 @@ body {
     border-radius: 15px;
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Появление шапки */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.8s ease forwards;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero h1 {
@@ -58,13 +69,31 @@ body {
     padding: 2rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: #333; /* чёрный текст в карточках */
+    /* Появление карточек */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: calc(var(--delay) * 0.1s); /* разная задержка для каждой карточки */
 }
 
+/* Номера задержек для карточек */
+.card:nth-child(1) { --delay: 0; }
+.card:nth-child(2) { --delay: 1; }
+.card:nth-child(3) { --delay: 2; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Плавное наведение */
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px) scale(1.02); /* поднятие + увеличение */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* тень при наведении */
+    transition: all 0.3s ease; /* плавность */
 }
 
 /* Заголовки в карточках */
@@ -151,6 +180,10 @@ footer {
     margin-top: 2rem;
     border-radius: 10px;
     font-size: 1.1rem;
+    /* Появление футера */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease 0.4s forwards; /* задержка для футера */
 }
 
 /* Адаптив */
