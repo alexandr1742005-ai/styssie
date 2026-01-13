@@ -7,54 +7,67 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* градиент */
+    min-height: 100vh;
     color: #333;
-    line-height: 1.6;
+    padding: 1rem;
 }
 
-/* Шапка */
+/* Шапка (уменьшенная) */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: rgba(255, 255, 255, 0.9); /* полупрозрачный фон */
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
     text-align: center;
-    padding: 4rem 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* размытие фона */
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2rem; /* уменьшенный размер */
     margin-bottom: 0.5rem;
+    color: #4a5568;
 }
 
 .hero p {
     font-size: 1.2rem;
+    color: #718096;
 }
 
 /* Основной контент */
 .container {
     max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    margin: 0 auto;
 }
 
-/* Карточки */
+/* Карточки (красивые) */
 .card {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9); /* полупрозрачный фон */
+    border-radius: 15px;
+    padding: 2rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* тень */
+    backdrop-filter: blur(10px); /* размытие */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* плавность */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* поднятие при наведении */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* тень при наведении */
 }
 
 .card h2 {
     color: #4a5568;
     margin-bottom: 1rem;
     font-size: 1.8rem;
-    border-bottom: 2px solid #667eea;
+    border-bottom: 2px solid #667eea; /* линия под заголовком */
     padding-bottom: 0.5rem;
 }
 
 .card p {
     margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .card ul {
@@ -76,7 +89,7 @@ body {
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 8px;
-    border-left: 4px solid #48bb78;
+    border-left: 4px solid #48bb78; /* зелёная линия */
 }
 
 .project-card h3 {
@@ -106,17 +119,16 @@ body {
 
 /* Футер */
 footer {
-    background: #333;
-    color: white;
     text-align: center;
     padding: 1rem;
+    color: white;
     margin-top: 2rem;
 }
 
 /* Адаптив */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .hero p {
@@ -124,6 +136,6 @@ footer {
     }
 
     .card {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 }
