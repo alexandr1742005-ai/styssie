@@ -7,32 +7,33 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* градиент */
+    background: linear-gradient(135deg, #ffffff 0%, #e0eafc 100%); /* светлый градиент */
     min-height: 100vh;
     color: #333;
     padding: 1rem;
 }
 
-/* Шапка (уменьшенная) */
+/* Шапка (яркая) */
 .hero {
-    background: rgba(255, 255, 255, 0.9); /* полупрозрачный фон */
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* градиент */
+    color: white;
     text-align: center;
+    padding: 3rem 1rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px); /* размытие фона */
 }
 
 .hero h1 {
-    font-size: 2rem; /* уменьшенный размер */
-    margin-bottom: 0.5rem;
-    color: #4a5568;
+    font-size: 3rem; /* больше текст */
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* тень */
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: #718096;
+    font-size: 1.5rem; /* больше текст */
+    font-weight: 500;
 }
 
 /* Основной контент */
@@ -41,32 +42,33 @@ body {
     margin: 0 auto;
 }
 
-/* Карточки (красивые) */
+/* Карточки */
 .card {
-    background: rgba(255, 255, 255, 0.9); /* полупрозрачный фон */
+    background: rgba(255, 255, 255, 0.95); /* почти белый */
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* тень */
-    backdrop-filter: blur(10px); /* размытие */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* плавность */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* поднятие при наведении */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* тень при наведении */
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .card h2 {
     color: #4a5568;
     margin-bottom: 1rem;
-    font-size: 1.8rem;
-    border-bottom: 2px solid #667eea; /* линия под заголовком */
+    font-size: 2rem; /* больше текст */
+    font-weight: bold;
+    border-bottom: 3px solid #667eea; /* толще линия */
     padding-bottom: 0.5rem;
 }
 
 .card p {
     margin-bottom: 1rem;
+    font-size: 1.2rem; /* больше текст */
     line-height: 1.6;
 }
 
@@ -77,33 +79,38 @@ body {
 
 .card li {
     background: #f7fafc;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.25rem;
     margin: 0.25rem 0;
-    border-radius: 5px;
-    border-left: 3px solid #667eea;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    font-size: 1.1rem; /* больше текст */
+    font-weight: 500;
 }
 
 /* Проекты */
-.project-card {
+.project-item {
     background: #f7fafc;
-    padding: 1rem;
+    padding: 1.25rem;
     margin: 1rem 0;
     border-radius: 8px;
-    border-left: 4px solid #48bb78; /* зелёная линия */
+    border-left: 4px solid #48bb78;
 }
 
-.project-card h3 {
+.project-item h3 {
     color: #2d3748;
     margin-bottom: 0.5rem;
-}
-
-.project-card a {
-    color: #667eea;
-    text-decoration: none;
+    font-size: 1.4rem; /* больше текст */
     font-weight: bold;
 }
 
-.project-card a:hover {
+.project-item a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem; /* больше текст */
+}
+
+.project-item a:hover {
     text-decoration: underline;
 }
 
@@ -111,6 +118,8 @@ body {
 .contact a {
     color: #667eea;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem; /* больше текст */
 }
 
 .contact a:hover {
@@ -120,18 +129,29 @@ body {
 /* Футер */
 footer {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
+    background: #333;
     color: white;
     margin-top: 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem; /* больше текст */
 }
 
 /* Адаптив */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .hero p {
+        font-size: 1.2rem;
+    }
+
+    .card h2 {
+        font-size: 1.6rem;
+    }
+
+    .card p {
         font-size: 1rem;
     }
 
