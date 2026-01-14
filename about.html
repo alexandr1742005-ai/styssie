@@ -3,19 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Обо мне — Александр</title>
+    <title>Обо мне — Styssie.developer</title>
+    <meta name="description" content="Обо мне: опыт работы, личные качества, профессиональные навыки. Python, Flask, HTML, CSS, JS.">
+    <meta name="keywords" content="Python, Flask, игры, приложения, разработка, PWA, SQL">
+    <meta name="author" content="Александр">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Обо мне</h1>
-    </header>
+    <!-- Главный блок с двумя колонками -->
+    <section class="hero-section">
+        <!-- Левая колонка: текст -->
+        <div class="hero-text">
+            <h1>Styssie.developer</h1>
+            <p>Python, Flask, HTML, CSS, JS.</p>
+        </div>
+
+        <!-- Правая колонка: изображение -->
+        <div class="hero-image">
+            <img src="images/coding-laptop.jpg" alt="Кодинг на ноутбуке">
+        </div>
+    </section>
+
+    <!-- Навигация -->
+    <nav style="text-align: center; margin: 1rem 0;">
+        <a href="about.html" style="margin: 0 1rem; color: white; text-decoration: none;">Обо мне</a>
+        <a href="projects.html" style="margin: 0 1rem; color: white; text-decoration: none;">Проекты</a>
+        <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
+    </nav>
+
     <main>
-        <p>Меня зовут Александр. Я студент 2 курса ЮУрГУ Изучаю Python,Java, Flask, HTML, CSS, JS, SQL</p>
-        <p>Создаю игры, базы данных на SQL, веб-приложения.</p>
-        <p>Всегда учусь чему-то новое.</p>
-        <p>Готов браться за любые проекты и принимать в них непосредственное участие.</p>
-        <p>Так же свои проекты и постоянно их совершенствую.</p>
+        <section class="container">
+            <!-- Карточка "Обо мне" -->
+            <div class="card">
+                <div class="about-section">
+                    <h2><span class="typewriter">Обо мне</span></h2>
+                    <div class="about-content">
+                        <p><strong>Опыт работы</strong><br>
+                        На данный момент совмещаю обучение в университете с интенсивной проектной практикой. В рамках разработки полноценного приложения создал с нуля аркадную игру «Snake», реализовав весь цикл — от проектирования и написания кода до тестирования и релиза. Этот опыт позволил углубить понимание принципов объектно-ориентированного программирования, логики игровых механик и управления проектом.<br><br>
+                        <strong>Личные качества</strong><br>
+                        Ответственность и нацеленность на результат: способен доводить задачи до завершения в установленные сроки.<br>
+                        Коммуникабельность и командная работа: готов к конструктивному диалогу, умею ясно доносить идеи и учитывать обратную связь.<br>
+                        Стрессоустойчивость и адаптивность: сохраняю работоспособность в условиях сжатых сроков и быстро осваиваю новые инструменты.<br>
+                        Высокая обучаемость: активно самостоятельно изучаю технологии и методики, применяя их в практике.<br><br>
+                        <strong>Профессиональные навыки</strong><br>
+                        Языки и технологии: Python, SQL (базы данных), Flask (бэкенд-разработка), HTML/CSS/JavaScript (фронтенд).<br>
+                        Инструменты и платформы: Git / GitHub (ведение репозиториев, контроль версий, командная разработка).<br>
+                        Специализированные API: опыт работы с Canvas API для реализации графики и анимации в браузере.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Александр. Все права защищены.</p>
+    </footer>
 </body>
 </html>
