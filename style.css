@@ -222,7 +222,7 @@ nav a:hover {
     display: flex; /* Делаем элемент флекс-контейнером */
     justify-content: center; /* Центрируем по горизонтали */
     align-items: center; /* Центрируем по вертикали */
-}
+    height: 100%; /* Высота 100% */
 }
 
 .about-content {
@@ -319,4 +319,5 @@ footer {
         text-align: left; /* На мобильных устройствах выравниваем слева */
     }
 }
+
 
