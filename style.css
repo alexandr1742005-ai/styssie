@@ -219,7 +219,10 @@ nav a:hover {
     padding-bottom: 0.5rem;
     margin: 0;
     min-width: 150px;
-    text-align: center; /* Центрируем текст */
+    display: flex; /* Делаем элемент флекс-контейнером */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+}
 }
 
 .about-content {
@@ -316,3 +319,4 @@ footer {
         text-align: left; /* На мобильных устройствах выравниваем слева */
     }
 }
+
