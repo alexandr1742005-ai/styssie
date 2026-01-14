@@ -416,7 +416,7 @@ footer {
 
 /* Герой-секция */
 .hero {
-    background: url('https://i.imgur.com/7KQ3XzE.jpg') no-repeat center center;
+    background: url('images/premium.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -556,3 +556,4 @@ footer {
     background: #333;
     color: white;
 }
+
