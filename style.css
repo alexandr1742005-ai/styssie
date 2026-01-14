@@ -18,26 +18,26 @@ body {
 .hero-section {
     display: flex;
     align-items: center;
-    justify-content: center; /* Центрируем по горизонтали */
-    gap: 2rem; /* Расстояние между блоками */
+    justify-content: center;
+    gap: 2rem;
     padding: 3rem 1rem;
     border-radius: 15px;
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     background: linear-gradient(to bottom, #000000 0%, #2d3748 100%);
     max-width: 1200px;
-    margin: 0 auto; /* Центрируем весь блок */
+    margin: 0 auto;
 }
 
 /* Левая колонка: текст */
 .hero-text {
     flex: 1;
-    max-width: 40%; /* Уменьшаем ширину текста */
+    max-width: 40%;
     text-align: left;
 }
 
 .hero-text h1 {
-    font-size: 3.5rem; /* Увеличиваем шрифт */
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     font-weight: bold;
     background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
@@ -47,7 +47,7 @@ body {
 }
 
 .hero-text p {
-    font-size: 1.8rem; /* Увеличиваем шрифт */
+    font-size: 1.8rem;
     font-weight: 500;
     background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
     -webkit-background-clip: text;
@@ -66,7 +66,7 @@ body {
 
 .hero-image img {
     width: 100%;
-    max-width: 450px; /* Уменьшаем размер картинки */
+    max-width: 450px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -116,6 +116,7 @@ nav a:hover {
     margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
+    /* Градиентный текст: светлый → тёмный */
     background: linear-gradient(to bottom, #ffffff 0%, #4a5568 100%);
     -webkit-background-clip: text;
     background-clip: text;
