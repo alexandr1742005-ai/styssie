@@ -3,16 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты — Александр</title>
+    <title>Контакты — Styssie.developer</title>
+    <meta name="description" content="Контакты: Email, Telegram. Python, Flask, HTML, CSS, JS.">
+    <meta name="keywords" content="Python, Flask, игры, приложения, разработка, PWA, SQL">
+    <meta name="author" content="Александр">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Контакты</h1>
-    </header>
+    <!-- Главный блок с двумя колонками -->
+    <section class="hero-section">
+        <!-- Левая колонка: текст -->
+        <div class="hero-text">
+            <h1>Styssie.developer</h1>
+            <p>Python, Flask, HTML, CSS, JS.</p>
+        </div>
+
+        <!-- Правая колонка: изображение -->
+        <div class="hero-image">
+            <img src="images/coding-laptop.jpg" alt="Кодинг на ноутбуке">
+        </div>
+    </section>
+
+    <!-- Навигация -->
+    <nav style="text-align: center; margin: 1rem 0;">
+        <a href="about.html" style="margin: 0 1rem; color: white; text-decoration: none;">Обо мне</a>
+        <a href="projects.html" style="margin: 0 1rem; color: white; text-decoration: none;">Проекты</a>
+        <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
+    </nav>
+
     <main>
-        <p>Email: alexandr.1742005@gmail.com</p>
-        <p>Telegram: <a href="https://t.me/styssie">@styssie</a></p>
+        <section class="container">
+            <!-- Карточка "Контакты" -->
+            <div class="card">
+                <div class="contacts-section">
+                    <h2><span class="typewriter">Контакты</span></h2>
+                    <div class="contacts-content">
+                        <p>Email: alexandr.1742005@gmail.com</p>
+                        <p>Telegram: <a href="https://t.me/styssie">@styssie</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Александр. Все права защищены.</p>
+    </footer>
 </body>
 </html>
