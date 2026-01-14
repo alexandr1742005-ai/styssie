@@ -276,20 +276,20 @@
                 ctx.lineCap = 'round';
 
                 // Цвет змейки — зелёный
-ctx.strokeStyle = '#4ade80'; // ярко-зелёный
-ctx.fillStyle = '#4ade80';
+                ctx.strokeStyle = '#4ade80'; // ярко-зелёный
+                ctx.fillStyle = '#4ade80';
 
-ctx.beginPath();
-ctx.moveTo(snake[0].x * gridSize + gridSize / 2, snake[0].y * gridSize + gridSize / 2);
+                ctx.beginPath();
+                ctx.moveTo(snake[0].x * gridSize + gridSize / 2, snake[0].y * gridSize + gridSize / 2);
 
-for (let i = 1; i < snake.length; i++) {
-    const segment = snake[i];
-    const centerX = segment.x * gridSize + gridSize / 2;
-    const centerY = segment.y * gridSize + gridSize / 2;
-    ctx.lineTo(centerX, centerY);
-}
+                for (let i = 1; i < snake.length; i++) {
+                    const segment = snake[i];
+                    const centerX = segment.x * gridSize + gridSize / 2;
+                    const centerY = segment.y * gridSize + gridSize / 2;
+                    ctx.lineTo(centerX, centerY);
+                }
 
-ctx.stroke();
+                ctx.stroke();
 
                 // Рисуем голову
                 const head = snake[0];
@@ -396,19 +396,22 @@ ctx.stroke();
             }
         }
 
-       // Яблоко как яблоко
-function drawFood() {
-    // Рисуем яблоко как круг с "хвостиком"
-    ctx.fillStyle = '#ef4444'; // красное яблоко
-    ctx.beginPath();
-    ctx.arc(food.x + gridSize/2, food.y + gridSize/2, gridSize/2, 0, Math.PI * 2);
-    ctx.fill();
+        // Яблоко как яблоко
+        function drawFood() {
+            // Координаты центра яблока
+            const centerX = food.x * gridSize + gridSize / 2;
+            const centerY = food.y * gridSize + gridSize / 2;
 
-    // "Хвостик" яблока
-    ctx.fillStyle = '#78350f'; // коричневый
-    ctx.fillRect(food.x + gridSize/2 - 2, food.y, 4, 6);
-}
+            // Тело яблока
+            ctx.fillStyle = '#ef4444'; // красное яблоко
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, gridSize / 2, 0, Math.PI * 2);
+            ctx.fill();
 
+            // "Хвостик" яблока
+            ctx.fillStyle = '#78350f'; // коричневый
+            ctx.fillRect(centerX - 2, food.y * gridSize, 4, 6);
+        }
 
         function moveSnake() {
             if (!gameActive) return;
@@ -575,4 +578,3 @@ function drawFood() {
     </script>
 </body>
 </html>
-
