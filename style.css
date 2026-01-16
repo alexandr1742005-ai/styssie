@@ -146,7 +146,6 @@ nav a:hover {
     align-items: center;
     height: 100%;
 }
-}
 
 /* Текст внутри карточек */
 .card p {
@@ -532,4 +531,5 @@ footer {
 .projects-content a:hover {
     text-decoration: underline;
 }
+
 
