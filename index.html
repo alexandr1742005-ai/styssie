@@ -33,71 +33,69 @@
     <main>
         <section class="container">
             <!-- Сетка из трёх колонок -->
-            <div class="three-column-grid">
-                <!-- Карточка "Обо мне" -->
-                <div class="card smooth-fade cascade-delay-1">
-                    <div class="about-section">
-                        <h2><span class="typewriter">Обо мне</span></h2>
-                        <div class="about-content">
-                            <p>Python, SQL, Flask, HTML/CSS/JS. Создаю игры и веб-приложения. Опыт в разработке проектов и работе с базами данных.</p>
-                            <p><a href="about.html">Подробнее →</a></p>
-                        </div>
-                    </div>
-                </div>
+            <div class="main-grid">
+    <!-- Блок "Обо мне" — занимает всю высоту -->
+    <div class="card smooth-fade cascade-delay-1" style="grid-row: span 2;">
+        <div class="about-section">
+            <h2><span class="typewriter">Обо мне</span></h2>
+            <div class="about-content">
+                <p>Python, SQL, Flask, HTML/CSS/JS. Создаю игры и веб-приложения. Опыт в разработке проектов и работе с базами данных.</p>
+                <p><a href="about.html">Подробнее →</a></p>
+            </div>
+        </div>
+    </div>
 
-                <!-- Карточка "Мои проекты" -->
-                <div class="card smooth-fade cascade-delay-2">
-                    <div class="projects-section">
-                        <h2><span class="typewriter">Мои проекты</span></h2>
-                        <div class="projects-content">
-                            <div class="project-item">
-                                <h3>Змейка Styssie Game</h3>
-                                <p>Классическая змейка с квестами, скинами и таблицей лидеров</p>
-                                <a href="./snake-game">Играть в змейку</a>
-                            </div>
-                            <div class="project-item">
-                                <h3>PWA Приложение</h3>
-                                <p>Мобильная версия змейки</p>
-                                <a href="#">Смотреть</a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Блок "Мои проекты" -->
+    <div class="card smooth-fade cascade-delay-2">
+        <div class="projects-section">
+            <h2><span class="typewriter">Мои проекты</span></h2>
+            <div class="projects-content">
+                <div class="project-item">
+                    <h3>Змейка Styssie Game</h3>
+                    <p>Классическая змейка с квестами, скинами и таблицей лидеров</p>
+                    <a href="./snake-game">Играть в змейку</a>
                 </div>
-
-                <!-- Карточка "Контакты" -->
-                <div class="card smooth-fade cascade-delay-3">
-                    <div class="contacts-section">
-                        <h2><span class="typewriter">Контакты</span></h2>
-                        <div class="contacts-content">
-                            <p>Email: alexandr.1742005@gmail.com</p>
-                            <p>Telegram: <a href="https://t.me/styssie">@styssie</a></p>
-                            <p>GitHub: <a href="https://github.com/alexandr1742005-ai" target="_blank">alexandr1742005-ai</a></p>
-                        </div>
-                    </div>
+                <div class="project-item">
+                    <h3>PWA Приложение</h3>
+                    <p>Мобильная версия змейки</p>
+                    <a href="#">Смотреть</a>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Дополнительные блоки -->
-            <div class="three-column-grid">
-                <!-- Карточка "Навыки" -->
-                <div class="card smooth-fade cascade-delay-4">
-                    <h2>Мои навыки</h2>
-                    <ul>
-                        <li>Python</li>
-                        <li>SQL</li>
-                        <li>Flask</li>
-                        <li>HTML/CSS</li>
-                        <li>JavaScript</li>
-                        <li>Git / GitHub</li>
-                        <li>Canvas API</li>
-                    </ul>
-                </div>
+    <!-- Блок "Контакты" -->
+    <div class="card smooth-fade cascade-delay-3">
+        <div class="contacts-section">
+            <h2><span class="typewriter">Контакты</span></h2>
+            <div class="contacts-content">
+                <p>Email: alexandr.1742005@gmail.com</p>
+                <p>Telegram: <a href="https://t.me/styssie">@styssie</a></p>
+                <p>GitHub: <a href="https://github.com/alexandr1742005-ai" target="_blank">alexandr1742005-ai</a></p>
+            </div>
+        </div>
+    </div>
 
-                <!-- Карточка "Опыт" -->
-                <div class="card smooth-fade cascade-delay-5">
-                    <h2>Опыт</h2>
-                    <p>Создание игр, веб-приложений, работа с базами данных, проектная практика в университете.</p>
-                </div>
+    <!-- Блок "Навыки" -->
+    <div class="card smooth-fade cascade-delay-4">
+        <h2>Мои навыки</h2>
+        <ul>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>Flask</li>
+            <li>HTML/CSS</li>
+            <li>JavaScript</li>
+            <li>Git / GitHub</li>
+            <li>Canvas API</li>
+        </ul>
+    </div>
+
+    <!-- Блок "Опыт" -->
+    <div class="card smooth-fade cascade-delay-5">
+        <h2>Опыт</h2>
+        <p>Создание игр, веб-приложений, работа с базами данных, проектная практика в университете.</p>
+    </div>
+</div>
 
                 <!-- Карточка "Статистика" -->
                 <div class="card smooth-fade cascade-delay-6">
@@ -117,4 +115,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
