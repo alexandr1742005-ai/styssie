@@ -500,3 +500,7 @@ footer {
     gap: 1rem;
 }
 
+.about-image {
+    margin-top: 1rem;
+    text-align: center;
+}
