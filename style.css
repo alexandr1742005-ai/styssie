@@ -491,4 +491,24 @@ footer {
     }
 }
 
+/* Ограничение высоты для карточки "Обо мне" */
+.about-content {
+    flex: 1;
+    overflow-y: auto; /* Полоса прокрутки, если текст не помещается */
+    max-height: 300px; /* Ограничиваем высоту */
+    padding-right: 10px; /* Место для полосы прокрутки */
+}
+
+.about-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.about-content::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+.about-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
 
