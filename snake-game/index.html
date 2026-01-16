@@ -476,12 +476,13 @@
         }
 
         function gameOver() {
-            gameActive = false;
-            setTimeout(() => {
-                alert('Игра окончена! Счёт: ' + score);
-                resetGame();
-            }, 100);
-        }
+    gameActive = false;
+    setTimeout(() => {
+        resetGame(); // Сразу сброс игры
+        gameActive = true; // Возобновляем игру
+        window.requestAnimationFrame(gameLoop); // Запускаем цикл снова
+    }, 100);
+}
 
         document.addEventListener('keydown', e => {
             if (!gameActive) return; // Игнорируем, если игра не активна
@@ -578,4 +579,5 @@
     </script>
 </body>
 </html>
+
 
