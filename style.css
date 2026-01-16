@@ -27,8 +27,8 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     background: linear-gradient(to bottom, #000000 0%, #2d3748 100%);
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none; /* Убираем ограничение */
 }
 
 /* Левая колонка: текст */
@@ -473,3 +473,4 @@ footer {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
