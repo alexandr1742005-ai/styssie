@@ -129,10 +129,8 @@ nav a:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Заголовки в карточках */
+/* Заголовки в карточках — одинаковый стиль для всех */
 .card h2 {
-    color: #4a5568;
-    margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
     background: linear-gradient(to bottom, #ffffff 0%, #4a5568 100%);
@@ -141,6 +139,11 @@ nav a:hover {
     color: transparent;
     border-bottom: 3px solid #667eea;
     padding-bottom: 0.5rem;
+    margin: 0;
+    display: block; /* Убираем flex */
+    text-align: left; /* Выравнивание по левому краю */
+    width: 100%; /* Ширина по всей карточке */
+    box-sizing: border-box;
 }
 
 /* Текст внутри карточек */
@@ -234,7 +237,6 @@ nav a:hover {
     width: 100%; /* Занимает всю ширину */
 }
 
-
 .about-content {
     flex: 1; /* Занимает всё оставшееся место */
     padding: 1rem; /* Отступы */
@@ -273,6 +275,7 @@ nav a:hover {
     font-weight: 500;
     color: white;
 }
+
 /* Цвет ссылки "Подробнее" */
 .about-content a {
     color: #667eea !important; 
@@ -290,6 +293,8 @@ nav a:hover {
     align-items: flex-start;
     gap: 2rem;
     padding: 1rem;
+    flex-direction: column; /* Делаем колонкой */
+    height: 100%; /* Занимает всю высоту */
 }
 
 .projects-section h2 {
@@ -302,11 +307,7 @@ nav a:hover {
     border-bottom: 3px solid #667eea;
     padding-bottom: 0.5rem;
     margin: 0;
-    min-width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    width: 100%; /* Занимает всю ширину */
 }
 
 .projects-content {
@@ -319,8 +320,9 @@ nav a:hover {
     align-items: flex-start;
     gap: 2rem;
     padding: 1rem;
+    flex-direction: column; /* Делаем колонкой */
+    height: 100%; /* Занимает всю высоту */
 }
-
 
 .contacts-section h2 {
     font-size: 2rem;
@@ -332,11 +334,7 @@ nav a:hover {
     border-bottom: 3px solid #667eea;
     padding-bottom: 0.5rem;
     margin: 0;
-    min-width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    width: 100%; /* Занимает всю ширину */
 }
 
 .contacts-content {
@@ -527,6 +525,3 @@ footer {
 .projects-content a:hover {
     text-decoration: underline;
 }
-
-
-
