@@ -217,6 +217,8 @@ nav a:hover {
     align-items: flex-start;
     gap: 2rem;
     padding: 1rem;
+    flex-direction: column; /* Делаем колонкой */
+    height: 100%; /* Занимает всю высоту */
 }
 
 .about-section h2 {
@@ -229,15 +231,12 @@ nav a:hover {
     border-bottom: 3px solid #667eea;
     padding-bottom: 0.5rem;
     margin: 0;
-    min-width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    width: 100%; /* Занимает всю ширину */
 }
 
 .about-content {
-    flex: 1;
+    flex: 1; /* Занимает всё оставшееся место */
+    padding: 1rem; /* Отступы */
 }
 
 .about-content p {
@@ -459,19 +458,7 @@ footer {
     to { transform: translateX(0); }
 }
 
-/* Три колонки */
-.three-column-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-@media (min-width: 1200px) {
-    .three-column-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+/* Сетка 2x2 */
 .main-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -491,24 +478,9 @@ footer {
     }
 }
 
-/* Ограничение высоты для карточки "Обо мне" */
+/* Убираем скролл из "Обо мне" */
 .about-content {
     flex: 1;
-    overflow-y: auto; /* Полоса прокрутки, если текст не помещается */
-    max-height: 300px; /* Ограничиваем высоту */
-    padding-right: 10px; /* Место для полосы прокрутки */
+    padding: 1rem;
+    overflow-y: visible; /* Убираем прокрутку */
 }
-
-.about-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.about-content::-webkit-scrollbar-thumb {
-    background: #667eea;
-    border-radius: 3px;
-}
-
-.about-content::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
