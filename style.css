@@ -156,6 +156,7 @@ nav a:hover {
 
 /* Список навыков */
 .card ul {
+    margin-top: 1rem; /* ← Отступ между заголовком и списком */
     list-style: none;
     padding-left: 0;
 }
@@ -163,7 +164,7 @@ nav a:hover {
 .card li {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.75rem 1.25rem;
-    margin: 0.25rem 0;
+    margin: 0.5rem 0; /* ← Увеличенный отступ между навыками */
     border-radius: 8px;
     border-left: 4px solid #667eea;
     font-size: 1.1rem;
