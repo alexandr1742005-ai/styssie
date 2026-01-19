@@ -144,6 +144,7 @@ nav a:hover {
     text-align: left; /* Выравнивание по левому краю */
     width: 100%; /* Ширина по всей карточке */
     box-sizing: border-box;
+    line-height: 1.2; 
 }
 
 /* Текст внутри карточек */
@@ -526,3 +527,4 @@ footer {
 .projects-content a:hover {
     text-decoration: underline;
 }
+
