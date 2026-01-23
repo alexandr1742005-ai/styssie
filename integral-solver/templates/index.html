@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Integral Solver</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <h2>Введите интеграл (например: x**2 + 3*x**3)</h2>
+    <input type="text" id="expression" value="x**2 + 3*x**3" size="50">
+    <button onclick="solve()">Решить</button>
+
+    <div id="result" style="margin-top: 20px;"></div>
+
+    <script>
+        async function solve() {
+            const expr = document.getElementById('expression').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "<p>Решаем...</p>";
+
+            try {
+                const response = await fetch('/solve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ expression: expr })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    let html = '<h3>Решение:</h3>';
+                    data.steps.forEach(step => {
+                        html += `<div style="margin:10px; padding:10px; background:#f9f9f9; border-left:4px solid #007BFF">`;
+                        if (step.explanation) html += `<p>${step.explanation}</p>`;
+                        if (step.math) html += `<p>\\(${step.math}\\)</p>`;
+                        html += `</div>`;
+                    });
+                    resultDiv.innerHTML = html;
+                    MathJax.typeset();
+                } else {
+                    resultDiv.innerHTML = `<p style="color:red">Ошибка: ${data.error}</p>`;
+                }
+            } catch (err) {
+                resultDiv.innerHTML = `<p style="color:red">Ошибка сети: ${err.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
