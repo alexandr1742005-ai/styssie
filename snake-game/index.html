@@ -220,21 +220,24 @@ const speedIncrease = 20; // ← На сколько уменьшаем заде
             }
         }
 
-        // Функция сброса игры
-        function resetGame() {
-            // Начальная позиция — центр
-            snake = [
-                {x: 10, y: 10}
-            ];
-            generateFood();
-            dx = 0;
-            dy = 0;
-            score = 0;
-            newRecordShown = false;
-            document.getElementById('score').textContent = 'Счёт: 0';
-            document.getElementById('newRecord').style.display = 'none';
-            gameActive = true;
-        }
+       function resetGame() {
+    // Начальная позиция — центр
+    snake = [
+        {x: 10, y: 10}
+    ];
+    // Генерируем еду только если игра активна
+    if (gameActive) {
+        generateFood();
+    }
+    dx = 0;
+    dy = 0;
+    score = 0;
+    newRecordShown = false;
+    level = 1; // ← Сброс уровня
+    moveInterval = baseSpeed; // ← Сброс скорости
+    document.getElementById('score').textContent = 'Счёт: ' + score;
+    document.getElementById('newRecord').style.display = 'none';
+}
 
         // Генерируем еду в свободной клетке
         function generateFood() {
@@ -582,5 +585,6 @@ if (score > 0 && score % 10 === 0) {
     </script>
 </body>
 </html>
+
 
 
