@@ -6,7 +6,7 @@
     <title>Styssie.developer — Портфолио</title>
     <meta name="description" content="Создаю игры и приложения под заказ. Python, Flask, HTML, CSS, JS.">
     <style>
-        /* Общие настройки */
+        /* ==================== Основные стили ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -15,202 +15,1491 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #2d3748 50%, #4a5568 100%);
-            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: white;
-            padding: 1rem;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Главный блок с двумя колонками */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 20%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ==================== Анимированный фон ==================== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ==================== Шапка ==================== */
         .hero-section {
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            padding: 6rem 1rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(to bottom, #000000 0%, #2d3748 100%);
-            width: 100%;
-            max-width: none;
+            justify-content: space-between;
+            padding: 4rem 6rem;
+            margin-bottom: 3rem;
+            z-index: 10;
         }
 
-        /* Левая колонка: текст */
         .hero-text {
             flex: 1;
-            max-width: 40%;
             text-align: left;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-            background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a78bfa, #f472b6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(167, 139, 250, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(167, 139, 250, 0.5); }
+            to { text-shadow: 0 0 40px rgba(244, 114, 182, 0.8); }
         }
 
         .hero-text p {
-            font-size: 1.8rem;
-            font-weight: 500;
-            background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #93c5fd, #c4b5fd, #f472b6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
 
-        /* Правая колонка: изображение */
+        @keyframes textGlow {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
         .hero-image {
             flex: 1;
-            max-width: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: float 6s ease-in-out infinite;
         }
 
         .hero-image img {
             width: 100%;
-            max-width: 700px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 60px rgba(167, 139, 250, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        /* Навигация — прозрачная */
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== Навигация ==================== */
         nav {
-            background: transparent;
-            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
             text-align: center;
             position: relative;
             z-index: 100;
-            border: none;
-            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 6rem 3rem;
+            border-radius: 15px;
         }
 
         nav a {
             color: white;
-            margin: 0 1.5rem;
+            margin: 0 2rem;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.3rem;
+            font-weight: 600;
+            font-size: 1.4rem;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
         }
 
         nav a:hover {
-            color: #667eea;
+            color: #a78bfa;
             background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.3);
         }
 
-        /* Сетка 3x2 */
+        /* ==================== Сетка 3x2 ==================== */
         .main-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-            height: 400px; /* Высота сетки */
+            gap: 2rem;
+            margin: 0 6rem 3rem;
+            height: 500px;
+            animation: fadeInGrid 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInGrid {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .grid-item {
-            background: linear-gradient(to bottom, #000000 0%, #2d3748 100%);
-            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 700;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             color: white;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00cc, #333399, #00ccff, #00ffcc);
+            background-size: 400% 400%;
+            z-index: -1;
+            border-radius: 22px;
+            animation: borderGlow 3s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .grid-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(167, 139, 250, 0.4),
+                        inset 0 0 30px rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
         }
 
-        /* Футер */
+        .grid-item:nth-child(1):hover { box-shadow: 0 30px 60px rgba(167, 139, 250, 0.4); }
+        .grid-item:nth-child(2):hover { box-shadow: 0 30px 60px rgba(59, 130, 246, 0.4); }
+        .grid-item:nth-child(3):hover { box-shadow: 0 30px 60px rgba(16, 185, 129, 0.4); }
+        .grid-item:nth-child(4):hover { box-shadow: 0 30px 60px rgba(245, 158, 11, 0.4); }
+        .grid-item:nth-child(5):hover { box-shadow: 0 30px 60px rgba(239, 68, 68, 0.4); }
+        .grid-item:nth-child(6):hover { box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4); }
+
+        /* ==================== Футер ==================== */
         footer {
             text-align: center;
-            padding: 1.5rem;
-            background: #333;
-            color: white;
-            margin-top: 2rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: rgba(255, 255, 255, 0.7);
+            margin: 3rem 6rem 0;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.2rem;
         }
 
-        /* Адаптив */
+        /* ==================== Адаптив ==================== */
+        @media (max-width: 1200px) {
+            .hero-section { padding: 3rem 4rem; }
+            .hero-text h1 { font-size: 4rem; }
+            .hero-text p { font-size: 2rem; }
+            .main-grid { margin: 0 4rem 3rem; height: 450px; }
+            nav { margin: 0 4rem 3rem; }
+            footer { margin: 3rem 4rem 0; }
+        }
+
         @media (max-width: 768px) {
             .hero-section {
+                flex-direction: column;
                 padding: 2rem 1rem;
+                gap: 2rem;
             }
 
-            .hero-text,
-            .hero-image {
-                max-width: 100%;
-                margin-bottom: 1rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-
-            .hero-text p {
-                font-size: 1.2rem;
-            }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { font-size: 1.5rem; }
+            .hero-image img { max-width: 300px; }
 
             .main-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(6, 1fr);
                 height: auto;
+                gap: 1.5rem;
+                margin: 0 1rem 2rem;
             }
+
+            nav {
+                margin: 0 1rem 2rem;
+                flex-wrap: wrap;
+            }
+
+            nav a { margin: 0.5rem; font-size: 1rem; }
+
+            footer { margin: 2rem 1rem 0; font-size: 1rem; }
+        }
+
+        /* ==================== Дополнительные эффекты ==================== */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .glow {
+            animation: glowEffect 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowEffect {
+            from { box-shadow: 0 0 20px rgba(167, 139, 250, 0.3); }
+            to { box-shadow: 0 0 40px rgba(244, 114, 182, 0.5); }
+        }
+
+        .neon-border {
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff00cc, #333399) 1;
+        }
+
+        /* ==================== Партиклы ==================== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 3s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ==================== Типографика ==================== */
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid #a78bfa;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #a78bfa; }
+        }
+
+        /* ==================== Свечение при наведении ==================== */
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            text-shadow: 0 0 20px currentColor;
+            transform: scale(1.1);
+        }
+
+        /* ==================== Анимации появления ==================== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== Стили для ссылок ==================== */
+        .gradient-link {
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        /* ==================== Кастомные скроллбары ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #f472b6, #a78bfa);
+        }
+
+        /* ==================== Стили для кнопок ==================== */
+        .cta-button {
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(244, 114, 182, 0.6);
+        }
+
+        /* ==================== Стили для иконок ==================== */
+        .icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+        }
+
+        /* ==================== Стили для прогресс-баров ==================== */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* ==================== Стили для табов ==================== */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+        }
+
+        /* ==================== Стили для карточек ==================== */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.3);
+        }
+
+        /* ==================== Стили для формы ==================== */
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+        }
+
+        /* ==================== Стили для таблиц ==================== */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .table th,
+        .table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table th {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для списка ==================== */
+        .list-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для аватарки ==================== */
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        /* ==================== Стили для бейджей ==================== */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* ==================== Стили для тултипов ==================== */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 1rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ==================== Стили для модальных окон ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.8);
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для слайдеров ==================== */
+        .slider {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            cursor: pointer;
+        }
+
+        /* ==================== Стили для чекбоксов ==================== */
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #a78bfa;
+        }
+
+        /* ==================== Стили для радио-кнопок ==================== */
+        .radio {
+            width: 20px;
+            height: 20px;
+            accent-color: #a78bfa;
+        }
+
+        /* ==================== Стили для селектов ==================== */
+        .select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            margin: 0.5rem 0;
+        }
+
+        /* ==================== Стили для текстовых областей ==================== */
+        .textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            margin: 0.5rem 0;
+            resize: vertical;
+        }
+
+        /* ==================== Стили для файловых инпутов ==================== */
+        .file-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            margin: 0.5rem 0;
+        }
+
+        /* ==================== Стили для кнопок с иконками ==================== */
+        .button-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ==================== Стили для навигационных панелей ==================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для боковых панелей ==================== */
+        .sidebar {
+            width: 250px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для футеров ==================== */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для главных заголовков ==================== */
+        .main-title {
+            font-size: 4rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 3rem 0;
+            background: linear-gradient(135deg, #ffffff, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ==================== Стили для подзаголовков ==================== */
+        .sub-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 2rem 0;
+            color: #a78bfa;
+        }
+
+        /* ==================== Стили для параграфов ==================== */
+        .paragraph {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ==================== Стили для ссылок ==================== */
+        .link {
+            color: #a78bfa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .link:hover {
+            color: #f472b6;
+            text-decoration: underline;
+        }
+
+        /* ==================== Стили для кнопок ==================== */
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
+        }
+
+        /* ==================== Стили для контейнеров ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==================== Стили для секций ==================== */
+        .section {
+            padding: 4rem 0;
+        }
+
+        /* ==================== Стили для карточек ==================== */
+        .card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Стили для грид-контейнеров ==================== */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* ==================== Стили для флекс-контейнеров ==================== */
+        .flex {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* ==================== Стили для центровки ==================== */
+        .center {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==================== Стили для скрытия ==================== */
+        .hidden {
+            display: none;
+        }
+
+        /* ==================== Стили для показа ==================== */
+        .visible {
+            display: block;
+        }
+
+        /* ==================== Стили для анимации загрузки ==================== */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #a78bfa;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==================== Стили для спиннеров ==================== */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #a78bfa;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==================== Стили для пульсации ==================== */
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ==================== Стили для мерцания ==================== */
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ==================== Стили для прыжка ==================== */
+        .jump {
+            animation: jump 1s infinite;
+        }
+
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ==================== Стили для вращения ==================== */
+        .rotate {
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== Стили для масштабирования ==================== */
+        .scale {
+            animation: scale 2s infinite;
+        }
+
+        @keyframes scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ==================== Стили для сдвига ==================== */
+        .slide {
+            animation: slide 3s infinite;
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        /* ==================== Стили для мерцания цвета ==================== */
+        .color-pulse {
+            animation: colorPulse 2s infinite;
+        }
+
+        @keyframes colorPulse {
+            0%, 100% { color: #a78bfa; }
+            50% { color: #f472b6; }
+        }
+
+        /* ==================== Стили для мерцания фона ==================== */
+        .bg-pulse {
+            animation: bgPulse 2s infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { background-color: rgba(0, 0, 0, 0.3); }
+            50% { background-color: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания границы ==================== */
+        .border-pulse {
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.1); }
+            50% { border-color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания тени ==================== */
+        .shadow-pulse {
+            animation: shadowPulse 2s infinite;
+        }
+
+        @keyframes shadowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(167, 139, 250, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.5); }
+        }
+
+        /* ==================== Стили для мерцания текста ==================== */
+        .text-pulse {
+            animation: textPulse 2s infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { text-shadow: none; }
+            50% { text-shadow: 0 0 20px #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания изображения ==================== */
+        .img-pulse {
+            animation: imgPulse 2s infinite;
+        }
+
+        @keyframes imgPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        /* ==================== Стили для мерцания фона изображения ==================== */
+        .img-bg-pulse {
+            animation: imgBgPulse 2s infinite;
+        }
+
+        @keyframes imgBgPulse {
+            0%, 100% { background-blend-mode: normal; }
+            50% { background-blend-mode: overlay; }
+        }
+
+        /* ==================== Стили для мерцания градиента ==================== */
+        .gradient-pulse {
+            animation: gradientPulse 2s infinite;
+        }
+
+        @keyframes gradientPulse {
+            0%, 100% { background: linear-gradient(135deg, #0f0c29, #302b63); }
+            50% { background: linear-gradient(135deg, #302b63, #24243e); }
+        }
+
+        /* ==================== Стили для мерцания сетки ==================== */
+        .grid-pulse {
+            animation: gridPulse 2s infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания навигации ==================== */
+        .nav-pulse {
+            animation: navPulse 2s infinite;
+        }
+
+        @keyframes navPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания карточки ==================== */
+        .card-pulse {
+            animation: cardPulse 2s infinite;
+        }
+
+        @keyframes cardPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* ==================== Стили для мерцания ссылки ==================== */
+        .link-pulse {
+            animation: linkPulse 2s infinite;
+        }
+
+        @keyframes linkPulse {
+            0%, 100% { color: white; }
+            50% { color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания кнопки ==================== */
+        .button-pulse {
+            animation: buttonPulse 2s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { background: linear-gradient(135deg, #a78bfa, #f472b6); }
+            50% { background: linear-gradient(135deg, #f472b6, #a78bfa); }
+        }
+
+        /* ==================== Стили для мерцания формы ==================== */
+        .form-pulse {
+            animation: formPulse 2s infinite;
+        }
+
+        @keyframes formPulse {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.1); }
+            50% { border-color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания инпута ==================== */
+        .input-pulse {
+            animation: inputPulse 2s infinite;
+        }
+
+        @keyframes inputPulse {
+            0%, 100% { box-shadow: none; }
+            50% { box-shadow: 0 0 20px rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания текстового поля ==================== */
+        .textarea-pulse {
+            animation: textareaPulse 2s infinite;
+        }
+
+        @keyframes textareaPulse {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.1); }
+            50% { border-color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания селекта ==================== */
+        .select-pulse {
+            animation: selectPulse 2s infinite;
+        }
+
+        @keyframes selectPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания файлового инпута ==================== */
+        .file-input-pulse {
+            animation: fileInputPulse 2s infinite;
+        }
+
+        @keyframes fileInputPulse {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.1); }
+            50% { border-color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания чекбокса ==================== */
+        .checkbox-pulse {
+            animation: checkboxPulse 2s infinite;
+        }
+
+        @keyframes checkboxPulse {
+            0%, 100% { accent-color: #a78bfa; }
+            50% { accent-color: #f472b6; }
+        }
+
+        /* ==================== Стили для мерцания радио-кнопки ==================== */
+        .radio-pulse {
+            animation: radioPulse 2s infinite;
+        }
+
+        @keyframes radioPulse {
+            0%, 100% { accent-color: #a78bfa; }
+            50% { accent-color: #f472b6; }
+        }
+
+        /* ==================== Стили для мерцания слайдера ==================== */
+        .slider-pulse {
+            animation: sliderPulse 2s infinite;
+        }
+
+        @keyframes sliderPulse {
+            0%, 100% { background: rgba(255, 255, 255, 0.1); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания тултипа ==================== */
+        .tooltip-pulse {
+            animation: tooltipPulse 2s infinite;
+        }
+
+        @keyframes tooltipPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.9); }
+            50% { background: rgba(167, 139, 250, 0.9); }
+        }
+
+        /* ==================== Стили для мерцания модального окна ==================== */
+        .modal-pulse {
+            animation: modalPulse 2s infinite;
+        }
+
+        @keyframes modalPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.8); }
+            50% { background: rgba(167, 139, 250, 0.8); }
+        }
+
+        /* ==================== Стили для мерцания бейджа ==================== */
+        .badge-pulse {
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { background: linear-gradient(135deg, #a78bfa, #f472b6); }
+            50% { background: linear-gradient(135deg, #f472b6, #a78bfa); }
+        }
+
+        /* ==================== Стили для мерцания аватара ==================== */
+        .avatar-pulse {
+            animation: avatarPulse 2s infinite;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { background: linear-gradient(135deg, #a78bfa, #f472b6); }
+            50% { background: linear-gradient(135deg, #f472b6, #a78bfa); }
+        }
+
+        /* ==================== Стили для мерцания иконки ==================== */
+        .icon-pulse {
+            animation: iconPulse 2s infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { background: linear-gradient(135deg, #a78bfa, #f472b6); }
+            50% { background: linear-gradient(135deg, #f472b6, #a78bfa); }
+        }
+
+        /* ==================== Стили для мерцания прогресс-бара ==================== */
+        .progress-bar-pulse {
+            animation: progressBarPulse 2s infinite;
+        }
+
+        @keyframes progressBarPulse {
+            0%, 100% { background: rgba(255, 255, 255, 0.1); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания заполнения прогресс-бара ==================== */
+        .progress-fill-pulse {
+            animation: progressFillPulse 2s infinite;
+        }
+
+        @keyframes progressFillPulse {
+            0%, 100% { background: linear-gradient(90deg, #a78bfa, #f472b6); }
+            50% { background: linear-gradient(90deg, #f472b6, #a78bfa); }
+        }
+
+        /* ==================== Стили для мерцания таба ==================== */
+        .tab-pulse {
+            animation: tabPulse 2s infinite;
+        }
+
+        @keyframes tabPulse {
+            0%, 100% { background: rgba(255, 255, 255, 0.1); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания активного таба ==================== */
+        .tab-active-pulse {
+            animation: tabActivePulse 2s infinite;
+        }
+
+        @keyframes tabActivePulse {
+            0%, 100% { background: linear-gradient(135deg, #a78bfa, #f472b6); }
+            50% { background: linear-gradient(135deg, #f472b6, #a78bfa); }
+        }
+
+        /* ==================== Стили для мерцания списка ==================== */
+        .list-item-pulse {
+            animation: listItemPulse 2s infinite;
+        }
+
+        @keyframes listItemPulse {
+            0%, 100% { border-bottom-color: rgba(255, 255, 255, 0.1); }
+            50% { border-bottom-color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания таблицы ==================== */
+        .table-pulse {
+            animation: tablePulse 2s infinite;
+        }
+
+        @keyframes tablePulse {
+            0%, 100% { border-bottom-color: rgba(255, 255, 255, 0.1); }
+            50% { border-bottom-color: #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания ячейки таблицы ==================== */
+        .table-cell-pulse {
+            animation: tableCellPulse 2s infinite;
+        }
+
+        @keyframes tableCellPulse {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(167, 139, 250, 0.1); }
+        }
+
+        /* ==================== Стили для мерцания заголовка таблицы ==================== */
+        .table-header-pulse {
+            animation: tableHeaderPulse 2s infinite;
+        }
+
+        @keyframes tableHeaderPulse {
+            0%, 100% { background: rgba(255, 255, 255, 0.1); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания футера ==================== */
+        .footer-pulse {
+            animation: footerPulse 2s infinite;
+        }
+
+        @keyframes footerPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.5); }
+            50% { background: rgba(167, 139, 250, 0.5); }
+        }
+
+        /* ==================== Стили для мерцания навигационной панели ==================== */
+        .navbar-pulse {
+            animation: navbarPulse 2s infinite;
+        }
+
+        @keyframes navbarPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания боковой панели ==================== */
+        .sidebar-pulse {
+            animation: sidebarPulse 2s infinite;
+        }
+
+        @keyframes sidebarPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания главного заголовка ==================== */
+        .main-title-pulse {
+            animation: mainTitlePulse 2s infinite;
+        }
+
+        @keyframes mainTitlePulse {
+            0%, 100% { text-shadow: none; }
+            50% { text-shadow: 0 0 20px #a78bfa; }
+        }
+
+        /* ==================== Стили для мерцания подзаголовка ==================== */
+        .sub-title-pulse {
+            animation: subTitlePulse 2s infinite;
+        }
+
+        @keyframes subTitlePulse {
+            0%, 100% { color: #a78bfa; }
+            50% { color: #f472b6; }
+        }
+
+        /* ==================== Стили для мерцания параграфа ==================== */
+        .paragraph-pulse {
+            animation: paragraphPulse 2s infinite;
+        }
+
+        @keyframes paragraphPulse {
+            0%, 100% { color: rgba(255, 255, 255, 0.8); }
+            50% { color: rgba(167, 139, 250, 0.8); }
+        }
+
+        /* ==================== Стили для мерцания контейнера ==================== */
+        .container-pulse {
+            animation: containerPulse 2s infinite;
+        }
+
+        @keyframes containerPulse {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(167, 139, 250, 0.05); }
+        }
+
+        /* ==================== Стили для мерцания секции ==================== */
+        .section-pulse {
+            animation: sectionPulse 2s infinite;
+        }
+
+        @keyframes sectionPulse {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(167, 139, 250, 0.05); }
+        }
+
+        /* ==================== Стили для мерцания карточки ==================== */
+        .card-pulse {
+            animation: cardPulse 2s infinite;
+        }
+
+        @keyframes cardPulse {
+            0%, 100% { background: rgba(0, 0, 0, 0.3); }
+            50% { background: rgba(167, 139, 250, 0.3); }
+        }
+
+        /* ==================== Стили для мерцания грид-контейнера ==================== */
+        .grid-pulse {
+            animation: gridPulse 2s infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(167, 139, 250, 0.05); }
+        }
+
+        /* ==================== Стили для мерцания флекс-контейнера ==================== */
+        .flex-pulse {
+            animation: flexPulse 2s infinite;
+        }
+
+        @keyframes flexPulse {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(167, 139, 250, 0.05); }
+        }
+
+        /* ==================== Стили для мерцания центровки ==================== */
+        .center-pulse {
+            animation: centerPulse 2s infinite;
+        }
+
+        @keyframes centerPulse {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(167, 139, 250, 0.05); }
+        }
+
+        /* ==================== Стили для мерцания loader'a ==================== */
+        .loader-pulse {
+            animation: loaderPulse 2s infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { border-color: #a78bfa; }
+            50% { border-color: #f472b6; }
+        }
+
+        /* ==================== Стили для мерцания spinner'a ==================== */
+        .spinner-pulse {
+            animation: spinnerPulse 2s infinite;
+        }
+
+        @keyframes spinnerPulse {
+            0%, 100% { border-top-color: #a78bfa; }
+            50% { border-top-color: #f472b6; }
         }
     </style>
 </head>
 <body>
-    <!-- Главный блок с двумя колонками -->
+    <div class="animated-bg"></div>
+    
+    <!-- Шапка -->
     <section class="hero-section">
-        <!-- Левая колонка: текст -->
         <div class="hero-text">
-            <h1>Styssie.developer</h1>
+            <h1 class="typewriter">Styssie.developer</h1>
             <p>Python, Flask, HTML, CSS, JS.</p>
         </div>
-
-        <!-- Правая колонка: изображение -->
         <div class="hero-image">
             <img src="images/coding(first).jpg" alt="Кодинг на ноутбуке">
         </div>
     </section>
 
     <!-- Навигация -->
-    <nav style="text-align: center; margin: 1rem 0;">
-        <a href="index.html" style="margin: 0 1rem; color: white; text-decoration: none;">Главная</a>
-        <a href="about.html" style="margin: 0 1rem; color: white; text-decoration: none;">Обо мне</a>
-        <a href="projects.html" style="margin: 0 1rem; color: white; text-decoration: none;">Проекты</a>
-        <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="about.html">Обо мне</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contact.html">Контакты</a>
     </nav>
 
     <!-- Сетка 3x2 -->
     <div class="main-grid">
-        <a href="about.html" class="grid-item">Обо мне</a>
-        <a href="skills.html" class="grid-item">Навыки</a>
-        <a href="contact.html" class="grid-item">Контакты</a>
-        <a href="projects.html" class="grid-item">Проекты</a>
-        <a href="experience.html" class="grid-item">Опыт</a>
-        <a href="#" class="grid-item">Пусто</a>
+        <a href="about.html" class="grid-item hover-glow">Обо мне</a>
+        <a href="skills.html" class="grid-item hover-glow">Навыки</a>
+        <a href="contact.html" class="grid-item hover-glow">Контакты</a>
+        <a href="projects.html" class="grid-item hover-glow">Проекты</a>
+        <a href="experience.html" class="grid-item hover-glow">Опыт</a>
+        <a href="#" class="grid-item hover-glow">Пусто</a>
     </div>
 
     <footer>
         <p>&copy; 2026 Александр. Все права защищены.</p>
     </footer>
+
+    <!-- Скрипты -->
+    <script>
+        // Добавляем частицы
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            document.body.appendChild(particlesContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Анимация при скролле
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Проверяем при загрузке
+        });
+
+        // Добавляем эффекты при наведении на карточки
+        const gridItems = document.querySelectorAll('.grid-item');
+        gridItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-10px) scale(1.05)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
