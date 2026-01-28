@@ -4,62 +4,396 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои проекты — Styssie.developer</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==================== Основные стили ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2a2a2a);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(50, 50, 50, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(30, 30, 30, 0.1) 0%, transparent 20%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ==================== Анимированный фон ==================== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2a2a2a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ==================== Навигация ==================== */
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            margin: 2rem 6rem 3rem;
+            border-radius: 15px;
+        }
+
+        nav a {
+            color: #d0d0d0;
+            margin: 0 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(120, 120, 120, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            color: #a0a0a0;
+            background: rgba(50, 50, 50, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(80, 80, 80, 0.3);
+        }
+
+        /* ==================== Заголовок ==================== */
+        .main-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 3rem 0;
+            background: linear-gradient(135deg, #ffffff, #a0a0a0, #808080);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(100, 100, 100, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(100, 100, 100, 0.5); }
+            to { text-shadow: 0 0 40px rgba(80, 80, 80, 0.8); }
+        }
+
+        /* ==================== Карточка "Мои проекты" ==================== */
+        .projects-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 0 6rem 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        inset 0 0 20px rgba(50, 50, 50, 0.2);
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            animation: fadeInCard 1s ease-out;
+        }
+
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .projects-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(80, 80, 80, 0.4),
+                        inset 0 0 30px rgba(60, 60, 60, 0.3);
+        }
+
+        /* ==================== Стили текста ==================== */
+        .projects-content {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(220, 220, 220, 0.9);
+        }
+
+        .projects-content h3 {
+            color: #a0a0a0;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            text-shadow: 0 0 10px rgba(100, 100, 100, 0.3);
+        }
+
+        .projects-content p {
+            margin: 0.8rem 0;
+        }
+
+        .projects-content a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .projects-content a:hover {
+            color: #808080;
+            text-shadow: 0 0 10px rgba(160, 160, 160, 0.5);
+        }
+
+        /* ==================== Анимации ==================== */
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid #a0a0a0;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #a0a0a0; }
+        }
+
+        /* ==================== Футер ==================== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: rgba(200, 200, 200, 0.7);
+            margin: 3rem 6rem 0;
+            border-radius: 15px;
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            font-size: 1.2rem;
+        }
+
+        /* ==================== Кнопка "Вернуться на главную" ==================== */
+        .back-button {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .back-button a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button a:hover {
+            color: #808080;
+            text-shadow: 0 0 10px rgba(160, 160, 160, 0.5);
+        }
+
+        /* ==================== Адаптив ==================== */
+        @media (max-width: 768px) {
+            nav { margin: 1rem 1rem 2rem; }
+            nav a { margin: 0.5rem; font-size: 1rem; }
+            .main-title { font-size: 2.5rem; margin: 2rem 0; }
+            .projects-card { padding: 2rem; margin: 0 1rem 2rem; }
+            .projects-content { font-size: 1.1rem; }
+            footer { margin: 2rem 1rem 0; font-size: 1rem; }
+            .back-button a { font-size: 1.2rem; }
+        }
+
+        /* ==================== Дополнительные эффекты ==================== */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            text-shadow: 0 0 20px #a0a0a0;
+            transform: scale(1.05);
+        }
+
+        /* ==================== Партиклы ==================== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(150, 150, 150, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 3s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ==================== Анимации появления ==================== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
+    <div class="animated-bg"></div>
+
     <!-- Навигация -->
-    <nav style="text-align: center; margin: 1rem 0;">
-        <a href="index.html" style="margin: 0 1rem; color: white; text-decoration: none;">Главная</a>
-        <a href="about.html" style="margin: 0 1rem; color: white; text-decoration: none;">Обо мне</a>
-        <a href="projects.html" style="margin: 0 1rem; color: white; text-decoration: none;">Проекты</a>
-        <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="about.html">Обо мне</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contact.html">Контакты</a>
     </nav>
 
-    <main>
-        <section class="container">
-            <!-- Карточка "Мои проекты" -->
-            <div class="card slide-in">
-                <div class="projects-section">
-                    <h2><span class="typewriter">Мои проекты</span></h2>
-                    <div class="projects-content">
-                        <div class="project-item">
-                            <h3>Змейка Styssie Game</h3>
-                            <p>Классическая змейка с квестами, скинами и таблицей лидеров</p>
-                            <a href="./snake-game">Играть в змейку</a>
-                        </div>
-                        <div class="project-item">
-                            <h3>PWA Приложение</h3>
-                            <p>Мобильная версия змейки</p>
-                            <a href="#">Смотреть</a>
-                        </div>
-                        <div class="project-item">
-                            <h3>Работа с использованием SQL</h3>
-                            <p>Разработка базы данных для веб-платформы. PostgreSQL, триггеры, хранимые процедуры.</p>
-                           <a href="https://docs.google.com/document/d/1HZj1IVr1gqsJB2Q5z3d-FxUgu9BLhZEp/edit?usp=sharing&ouid=102333938774137555975&rtpof=true&sd=true" target="_blank">Смотреть работу</a>
-                        <br><br>
-                            <h3>Код программы в PostgreSQL</h3>
-    <a href="https://docs.google.com/document/d/1Olp-FTLGmM0bzwp30HtRQWvTwkKLshNe/edit?usp=sharing&ouid=102333938774137555975&rtpof=true&sd=true" target="_blank">Смотреть код</a>
-                          </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Заголовок -->
+    <h1 class="main-title typewriter">Мои проекты</h1>
+
+    <!-- Карточка "Мои проекты" -->
+    <div class="projects-card">
+        <div class="projects-content">
+            <div class="project-item">
+                <h3>Змейка Styssie Game</h3>
+                <p>Классическая змейка с квестами, скинами и таблицей лидеров</p>
+                <a href="./snake-game">Играть в змейку</a>
             </div>
-        </section>
-    </main>
+            <div class="project-item">
+                <h3>PWA Приложение</h3>
+                <p>Мобильная версия змейки</p>
+                <a href="#">Смотреть</a>
+            </div>
+            <div class="project-item">
+                <h3>Работа с использованием SQL</h3>
+                <p>Разработка базы данных для веб-платформы. PostgreSQL, триггеры, хранимые процедуры.</p>
+                <a href="https://docs.google.com/document/d/1HZj1IVr1gqsJB2Q5z3d-FxUgu9BLhZEp/edit?usp=sharing&ouid=102333938774137555975&rtpof=true&sd=true" target="_blank">Смотреть работу</a>
+                <br><br>
+                <h3>Код программы в PostgreSQL</h3>
+                <a href="https://docs.google.com/document/d/1Olp-FTLGmM0bzwp30HtRQWvTwkKLshNe/edit?usp=sharing&ouid=102333938774137555975&rtpof=true&sd=true" target="_blank">Смотреть код</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка "Вернуться на главную" -->
+    <div class="back-button">
+        <a href="index.html">← Вернуться на главную</a>
+    </div>
 
     <footer>
         <p>&copy; 2026 Александр. Все права защищены.</p>
     </footer>
 
-    <!-- Кнопка "Вернуться на главную" -->
-    <div style="text-align: center; margin-top: 2rem;">
-        <a href="index.html" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 1.2rem;">← Вернуться на главную</a>
-    </div>
+    <!-- Скрипты -->
+    <script>
+        // Добавляем частицы
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            document.body.appendChild(particlesContainer);
 
-    <script src="script.js"></script>
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Анимация при скролле
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Проверяем при загрузке
+        });
+
+        // Добавляем эффекты при наведении на карточки
+        const projectsCard = document.querySelector('.projects-card');
+        projectsCard.addEventListener('mouseenter', () => {
+            projectsCard.style.transform = 'translateY(-5px)';
+        });
+        
+        projectsCard.addEventListener('mouseleave', () => {
+            projectsCard.style.transform = 'translateY(0)';
+        });
+    </script>
 </body>
 </html>
-
-
-
-
