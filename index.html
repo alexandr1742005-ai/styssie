@@ -5,7 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styssie.developer — Портфолио</title>
     <meta name="description" content="Создаю игры и приложения под заказ. Python, Flask, HTML, CSS, JS.">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Общие настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #2d3748 50%, #4a5568 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 1rem;
+        }
+
+        /* Главный блок с двумя колонками */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 6rem 1rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to bottom, #000000 0%, #2d3748 100%);
+            width: 100%;
+            max-width: none;
+        }
+
+        /* Левая колонка: текст */
+        .hero-text {
+            flex: 1;
+            max-width: 40%;
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.8rem;
+            font-weight: 500;
+            background: linear-gradient(to bottom, #ffffff 0%, #333333 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Правая колонка: изображение */
+        .hero-image {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Навигация — прозрачная */
+        nav {
+            background: transparent;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+            border: none;
+            box-shadow: none;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            color: #667eea;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Сетка 3x2 */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+            height: 400px; /* Высота сетки */
+        }
+
+        .grid-item {
+            background: linear-gradient(to bottom, #000000 0%, #2d3748 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #333;
+            color: white;
+            margin-top: 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+
+            .hero-text,
+            .hero-image {
+                max-width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+                height: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Главный блок с двумя колонками -->
@@ -30,85 +199,18 @@
         <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
     </nav>
 
-    <main>
-        <section class="container">
-            <!-- Сетка 2x2 -->
-            <div class="main-grid">
-              <!-- Блок "Обо мне" — занимает всю высоту -->
-<div class="card smooth-fade cascade-delay-1" style="grid-row: span 2;">
-    <div class="about-section">
-        <h2><span class="typewriter">Обо мне</span></h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>На данный момент совмещаю обучение в университете с интенсивной проектной практикой. В рамках разработки полноценного приложения создал с нуля аркадную игру «Snake», реализовав весь цикл — от проектирования и написания кода до тестирования и релиза. Этот опыт позволил углубить понимание принципов объектно-ориентированного программирования, логики игровых механик и управления проектом.</p>
-                <p><a href="about.html">Подробнее →</a></p>
-                <!-- Картинка -->
-                <div class="about-image">
-                    <img src="images/coding.jpg" alt="Кодинг на ноутбуке" style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 1rem;">
-                </div>
-            </div>
-        </div>
+    <!-- Сетка 3x2 -->
+    <div class="main-grid">
+        <a href="about.html" class="grid-item">Обо мне</a>
+        <a href="skills.html" class="grid-item">Навыки</a>
+        <a href="contact.html" class="grid-item">Контакты</a>
+        <a href="projects.html" class="grid-item">Проекты</a>
+        <a href="experience.html" class="grid-item">Опыт</a>
+        <a href="#" class="grid-item">Пусто</a>
     </div>
-</div>
-
-<!-- Блок "Мои проекты" -->
-<div class="card smooth-fade cascade-delay-2">
-    <div class="projects-section">
-        <h2><span class="typewriter">Мои проекты</span></h2>
-        <div class="projects-content">
-            <p><strong>Змейка.Styssie</strong><br>
-            Змейка — аркадная игра, в которой игрок управляет растущей змеёй, собирая еду на ограниченном поле, избегая столкновений со стенами и собственным телом.</p>
-            
-            <p><strong>PWA Приложение</strong><br>
-            Мобильная версия змейки.</p>
-            
-            <p><strong>Работа с использованием SQL</strong><br>
-           Проектирование и реализация серверной части данных для веб-платформы. В основе — реляционная СУБД PostgreSQL. Архитектура базы данных включает сложные бизнес-правила, реализованные через хранимые процедуры и триггеры, ролевую модель доступа (RBAC) для разграничения прав, а также комплексные оптимизированные SQL-запросы. Особое внимание уделено целостности и безопасности данных за счет каскадных ограничений (CONSTRAINTS) и принципов минимальных привилегий.</p>
-            
-            <p><a href="projects.html">Смотреть проекты →</a></p>
-        </div>
-    </div>
-</div>
-
-                <!-- Блок "Навыки" -->
-                <div class="card smooth-fade cascade-delay-4">
-                    <h2>Мои навыки</h2>
-                    <ul>
-                        <li>Python</li>
-                        <li>SQL</li>
-                        <li>Flask</li>
-                        <li>HTML/CSS</li>
-                        <li>JavaScript</li>
-                        <li>Git / GitHub</li>
-                        <li>Canvas API</li>
-                    </ul>
-                </div>
-
-                 <!-- Блок "Контакты" -->
-                <div class="card smooth-fade cascade-delay-3">
-                    <div class="contacts-section">
-                        <h2><span class="typewriter">Контакты</span></h2>
-                        <div class="contacts-content">
-                            <p>Email: alexandr.1742005@gmail.com</p>
-                            <p>Telegram: <a href="https://t.me/styssie  ">@styssie</a></p>
-                            <p>GitHub: <a href="https://github.com/alexandr1742005-ai  " target="_blank">alexandr1742005-ai</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Блок "Опыт" -->
-                <div class="card smooth-fade cascade-delay-5">
-                    <h2>Опыт</h2>
-                    <p>Создание игр, веб-приложений, работа с базами данных, курсовые и практические работы в университете.</p>
-                </div>
-            </div>
-        </section>
-    </main>
 
     <footer>
         <p>&copy; 2026 Александр. Все права защищены.</p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
