@@ -173,10 +173,13 @@
         const gridSize = 20;
         const tileCount = Math.floor(canvas.width / gridSize);
 
-        let snake, food, dx, dy, score, bestScore, newRecordShown;
-        let lastMoveTime = 0;
-        let gameActive = true;
-        const moveInterval = 100;
+       let snake, food, dx, dy, score, bestScore, newRecordShown;
+let lastMoveTime = 0;
+let gameActive = true;
+let moveInterval = 200; // ← Начальная скорость
+let level = 1; // ← Текущий уровень
+const baseSpeed = 200; // ← Базовая скорость
+const speedIncrease = 20; // ← На сколько уменьшаем задержку
 
         // Имя игрока
         let playerName = '';
@@ -578,3 +581,4 @@
     </script>
 </body>
 </html>
+
