@@ -3,121 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styssie.developer — Портфолио</title>
-    <meta name="description" content="web-developer.">
-    <link rel="stylesheet" href="style.css">
+    <title>Styssie Snake Pro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            overflow: hidden;
+        }
+
+        canvas {
+            background-color: #000;
+            display: block;
+        }
+
+        .ui-panel {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            font-size: 16px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .skins {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skin {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .skin.active {
+            border-color: #667eea;
+        }
+
+        .achievements {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: gold;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            z-index: 100;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Главный блок с двумя колонками -->
-    <section class="hero-section">
-        <!-- Левая колонка: текст -->
-        <div class="hero-text">
-            <h1>web-developer</h1>
-            <p>Python, Flask, HTML, CSS, JS.</p>
-        </div>
-
-        <!-- Правая колонка: изображение -->
-        <div class="hero-image">
-            <img src="./images/coding(first).jpg" alt="Кодинг на ноутбуке">
-        </div>
-    </section>
-
-    <!-- Навигация -->
-    <nav style="text-align: center; margin: 1rem 0;">
-        <a href="index.html" style="margin: 0 1rem; color: white; text-decoration: none;">Главная</a>
-        <a href="about.html" style="margin: 0 1rem; color: white; text-decoration: none;">Обо мне</a>
-        <a href="projects.html" style="margin: 0 1rem; color: white; text-decoration: none;">Проекты</a>
-        <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
-   <!-- Поле поиска в правом верхнем углу -->
-<div class="search-container">
-    <input type="text" id="searchInput" placeholder="Поиск по сайту..." class="search-input">
-</div>
-    </nav>
-
-    <main>
-        <section class="container">
-            <!-- Сетка 2x2 -->
-            <div class="main-grid">
-              <!-- Блок "Обо мне" — занимает всю высоту -->
-<div class="card smooth-fade cascade-delay-1" style="grid-row: span 2;">
-    <div class="about-section">
-        <h2><span class="typewriter">Обо мне</span></h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Здравствуйте, меня зовут Александр. На данный момент совмещаю обучение в университете с интенсивной проектной практикой. В рамках разработки полноценного приложения создал с нуля аркадную игру «Snake», реализовав весь цикл — от проектирования и написания кода до тестирования и релиза. Этот опыт позволил углубить понимание принципов объектно-ориентированного программирования, логики игровых механик и управления проектом.</p>
-                <p><a href="about.html">Подробнее →</a></p>
-                <!-- Картинка -->
-                <div class="about-image">
-                    <img src="./images/coding.jpg" alt="тут должна быть картинка" style="width: 100%; max-width: 500px; border-radius: 10px; margin-top: 1rem;">
-                </div>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+        
+        <div class="ui-panel">
+            <div class="stats">
+                <div class="stat">Счёт: <span id="score">0</span></div>
+                <div class="stat">Уровень: <span id="level">1</span></div>
+                <div class="stat">Скорость: <span id="speed">1</span></div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Блок "Мои проекты" -->
-<div class="card smooth-fade cascade-delay-2">
-    <div class="projects-section">
-        <h2><span class="typewriter">Мои проекты</span></h2>
-        <div class="projects-content">
-            <p><strong>Змейка.Styssie</strong><br>
-            Змейка — аркадная игра, в которой игрок управляет растущей змеёй, собирая еду на ограниченном поле, избегая столкновений со стенами и собственным телом.</p>
-            
-            <p><strong>PWA Приложение</strong><br>
-            Мобильная версия змейки.</p>
-            
-            <p><strong>Работа с использованием SQL</strong><br>
-           Проектирование и реализация серверной части данных для веб-платформы. В основе — реляционная СУБД PostgreSQL. Архитектура базы данных включает сложные бизнес-правила, реализованные через хранимые процедуры и триггеры, ролевую модель доступа (RBAC) для разграничения прав, а также комплексные оптимизированные SQL-запросы. Особое внимание уделено целостности и безопасности данных за счет каскадных ограничений (CONSTRAINTS) и принципов минимальных привилегий. Так же представлен код программы.</p>
-            <p><a href="projects.html">Смотреть проекты →</a></p>
-           <p><strong>Интегральный решатель</strong><br>
-Разработка веб-приложения для решения математических интегралов. Реализовано с использованием Python и Flask. Пользователь вводит интеграл, и приложение выдаёт решение с пошаговым объяснением.</p>
-<a href="./integral-solver/index.html" target="_blank">Смотреть проект</a>
+        <div class="achievements" id="achievement">
+            <h3>🎉 Достижение!</h3>
+            <p id="achievement-text">Новый уровень!</p>
         </div>
     </div>
-</div>
 
-                <!-- Блок "Навыки" -->
-                <div class="card smooth-fade cascade-delay-4">
-                      <h2><span class="typewriter">Мои навыки</span></h2>
-                    <ul>
-                        <li>Python</li>
-                        <li>SQL</li>
-                        <li>Flask</li>
-                        <li>HTML/CSS</li>
-                        <li>JavaScript</li>
-                        <li>Git / GitHub</li>
-                        <li>Canvas API</li>
-                        <li>C++</li>
-                    </ul>
-                </div>
+    <div class="controls">
+        <button onclick="resetGame()">Новая игра</button>
+        <button onclick="togglePause()">Пауза</button>
+    </div>
 
-                 <!-- Блок "Контакты" -->
-                <div class="card smooth-fade cascade-delay-3">
-                    <div class="contacts-section">
-                        <h2><span class="typewriter">Контакты</span></h2>
-                        <div class="contacts-content">
-                            <p>Email: alexandr.1742005@gmail.com</p>
-                            <p>Telegram: <a href="https://t.me/styssie">@styssie</a></p>
-                            <p>GitHub: <a href="https://github.com/alexandr1742005-ai" target="_blank">alexandr1742005-ai</a></p>
-                        </div>
-                    </div>
-                </div>
+    <div class="skins">
+        <div class="skin active" style="background: linear-gradient(45deg, #4ade80, #22c55e);" onclick="changeSkin('green')"></div>
+        <div class="skin" style="background: linear-gradient(45deg, #ef4444, #dc2626);" onclick="changeSkin('red')"></div>
+        <div class="skin" style="background: linear-gradient(45deg, #3b82f6, #1d4ed8);" onclick="changeSkin('blue')"></div>
+        <div class="skin" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed);" onclick="changeSkin('purple')"></div>
+    </div>
 
-                <!-- Блок "Опыт" -->
-                <div class="card smooth-fade cascade-delay-5">
-                    <h2>Опыт</h2>
-                    <p>Создание игр, веб-приложений, работа с базами данных, вычислительные программы, курсовые и практические работы в университете.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
 
-    <footer>
-        <p>&copy; 2026 Александр. Все права защищены.</p>
-    </footer>
+        // Константы
+        const GRID_SIZE = 20;
+        const TILE_COUNT = Math.floor(canvas.width / GRID_SIZE);
+        const BASE_SPEED = 200;
+        const SPEED_INCREASE = 20;
 
-    <script src="script.js"></script>
+        // Переменные игры
+        let snake = [];
+        let food = {};
+        let dx = 0;
+        let dy = 0;
+        let score = 0;
+        let level = 1;
+        let gameActive = true;
+        let paused = false;
+        let moveInterval = BASE_SPEED;
+        let lastMoveTime = 0;
+        let skinColor = '#4ade80';
+
+        // Инициализация игры
+        function initGame() {
+            snake = [{x: 10, y: 10}];
+            generateFood();
+            dx = 0;
+            dy = 0;
+            score = 0;
+            level = 1;
+            gameActive = true;
+            paused = false;
+            moveInterval = BASE_SPEED;
+            
+            updateUI();
+            gameLoop();
+        }
+
+        // Генерация еды
+        function generateFood() {
+            let newFood;
+            let overlapping;
+
+            do {
+                overlapping = false;
+                newFood = {
+                    x: Math.floor(Math.random() * TILE_COUNT),
+                    y: Math.floor(Math.random() * TILE_COUNT)
+                };
+
+                for (let segment of snake) {
+                    if (segment.x === newFood.x && segment.y === newFood.y) {
+                        overlapping = true;
+                        break;
+                    }
+                }
+            } while (overlapping);
+
+            food = newFood;
+        }
+
+        // Рисование змейки
+        function drawSnake() {
+            // Рисуем тело
+            ctx.lineWidth = 12;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = skinColor;
+            ctx.fillStyle = skinColor;
+
+            ctx.beginPath();
+            ctx.moveTo(snake[0].x * GRID_SIZE + GRID_SIZE / 2, snake[0].y * GRID_SIZE + GRID_SIZE / 2);
+
+            for (let i = 1; i < snake.length; i++) {
+                const segment = snake[i];
+                const centerX = segment.x * GRID_SIZE + GRID_SIZE / 2;
+                const centerY = segment.y * GRID_SIZE + GRID_SIZE / 2;
+                ctx.lineTo(centerX, centerY);
+            }
+
+            ctx.stroke();
+
+            // Рисуем голову
+            const head = snake[0];
+            const headX = head.x * GRID_SIZE + GRID_SIZE / 2;
+            const headY = head.y * GRID_SIZE + GRID_SIZE / 2;
+
+            ctx.fillStyle = skinColor;
+            ctx.beginPath();
+            ctx.ellipse(headX, headY, GRID_SIZE / 2, GRID_SIZE / 2.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Глаза
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(headX - GRID_SIZE / 4, headY - GRID_SIZE / 6, GRID_SIZE / 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(headX + GRID_SIZE / 4, headY - GRID_SIZE / 6, GRID_SIZE / 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Зрачки
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(headX - GRID_SIZE / 4, headY - GRID_SIZE / 6, GRID_SIZE / 16, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(headX + GRID_SIZE / 4, headY - GRID_SIZE / 6, GRID_SIZE / 16, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Рисование еды
+        function drawFood() {
+            const centerX = food.x * GRID_SIZE + GRID_SIZE / 2;
+            const centerY = food.y * GRID_SIZE + GRID_SIZE / 2;
+
+            // Яблоко
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, GRID_SIZE / 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Белые точки
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(centerX - GRID_SIZE / 4, centerY - GRID_SIZE / 4, GRID_SIZE / 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(centerX + GRID_SIZE / 4, centerY - GRID_SIZE / 4, GRID_SIZE / 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY + GRID_SIZE / 4, GRID_SIZE / 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Стебелёк
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY - GRID_SIZE / 2);
+            ctx.lineTo(centerX + GRID_SIZE / 6, centerY - GRID_SIZE / 2 - GRID_SIZE / 4);
+            ctx.stroke();
+        }
+
+        // Движение змейки
+        function moveSnake() {
+            if (!gameActive || paused) return;
+
+            let head = {x: snake[0].x + dx, y: snake[0].y + dy};
+
+            // Прохождение сквозь стены
+            if (head.x < 0) head.x = TILE_COUNT - 1;
+            else if (head.x >= TILE_COUNT) head.x = 0;
+            if (head.y < 0) head.y = TILE_COUNT - 1;
+            else if (head.y >= TILE_COUNT) head.y = 0;
+
+            // Проверка столкновения с собой
+            for (let i = 0; i < snake.length; i++) {
+                if (snake[i].x === head.x && snake[i].y === head.y) {
+                    gameOver();
+                    return;
+                }
+            }
+
+            snake.unshift(head);
+
+            // Проверка съедания еды
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+
+                // Проверка уровня
+                if (score % 10 === 0) {
+                    level++;
+                    moveInterval = Math.max(BASE_SPEED - (level - 1) * SPEED_INCREASE, 50);
+                    showAchievement(`🚀 Уровень ${level}!`);
+                }
+
+                generateFood();
+            } else {
+                snake.pop();
+            }
+
+            updateUI();
+        }
+
+        // Игровой цикл
+        function gameLoop(currentTime) {
+            requestAnimationFrame(gameLoop);
+
+            if (currentTime - lastMoveTime >= moveInterval && gameActive && !paused) {
+                moveSnake();
+                lastMoveTime = currentTime;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawSnake();
+            drawFood();
+        }
+
+        // Обновление UI
+        function updateUI() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('level').textContent = level;
+            document.getElementById('speed').textContent = Math.round((BASE_SPEED - moveInterval) / SPEED_INCREASE + 1);
+        }
+
+        // Конец игры
+        function gameOver() {
+            gameActive = false;
+            alert(`Игра окончена! Счёт: ${score}`);
+            initGame();
+        }
+
+        // Показ достижения
+        function showAchievement(text) {
+            const achievement = document.getElementById('achievement');
+            document.getElementById('achievement-text').textContent = text;
+            achievement.style.display = 'block';
+            
+            setTimeout(() => {
+                achievement.style.display = 'none';
+            }, 2000);
+        }
+
+        // Смена скина
+        function changeSkin(color) {
+            const skins = document.querySelectorAll('.skin');
+            skins.forEach(skin => skin.classList.remove('active'));
+            
+            if (color === 'green') {
+                skinColor = '#4ade80';
+                document.querySelector('[onclick="changeSkin(\'green\')"]').classList.add('active');
+            } else if (color === 'red') {
+                skinColor = '#ef4444';
+                document.querySelector('[onclick="changeSkin(\'red\')"]').classList.add('active');
+            } else if (color === 'blue') {
+                skinColor = '#3b82f6';
+                document.querySelector('[onclick="changeSkin(\'blue\')"]').classList.add('active');
+            } else if (color === 'purple') {
+                skinColor = '#8b5cf6';
+                document.querySelector('[onclick="changeSkin(\'purple\')"]').classList.add('active');
+            }
+        }
+
+        // Новая игра
+        function resetGame() {
+            initGame();
+        }
+
+        // Пауза
+        function togglePause() {
+            paused = !paused;
+            showAchievement(paused ? '⏸️ Пауза' : '▶️ Продолжение');
+        }
+
+        // Управление
+        document.addEventListener('keydown', e => {
+            if (!gameActive || paused) return;
+
+            switch(e.code) {
+                case 'ArrowUp':
+                    if (dy === 0) { dx = 0; dy = -1; }
+                    break;
+                case 'ArrowDown':
+                    if (dy === 0) { dx = 0; dy = 1; }
+                    break;
+                case 'ArrowLeft':
+                    if (dx === 0) { dx = -1; dy = 0; }
+                    break;
+                case 'ArrowRight':
+                    if (dx === 0) { dx = 1; dy = 0; }
+                    break;
+            }
+        });
+
+        // Запуск игры
+        initGame();
+    </script>
 </body>
 </html>
-
-
