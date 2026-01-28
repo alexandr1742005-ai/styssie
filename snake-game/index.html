@@ -437,10 +437,11 @@ const speedIncrease = 20; // ← На сколько уменьшаем заде
 
             snake.unshift(head);
 
-            // Если съели еду
-            if (head.x === food.x && head.y === food.y) {
-                score++;
-                document.getElementById('score').textContent = 'Счёт: ' + score;
+            // Проверка уровня
+if (score > 0 && score % 10 === 0) {
+    level = Math.floor(score / 10) + 1;
+    moveInterval = Math.max(baseSpeed - (level - 1) * speedIncrease, 50); // ← Увеличиваем скорость
+}
 
                 // Проверяем рекорд
                 if (score > bestScore) {
@@ -581,4 +582,5 @@ const speedIncrease = 20; // ← На сколько уменьшаем заде
     </script>
 </body>
 </html>
+
 
