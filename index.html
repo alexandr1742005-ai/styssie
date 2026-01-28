@@ -3,92 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styssie — Web Developer</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #3b48e3; /* синий фон как на рисунке */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 20px;
-            border-bottom: 2px solid black;
-        }
-
-        .header-left {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .header-right {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .row {
-            display: flex;
-            width: 100%;
-            border-bottom: 2px solid black;
-            min-height: 120px;
-        }
-
-        .cell {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            font-weight: bold;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .cell:nth-child(2) {
-            border-left: 2px solid black;
-            border-right: 2px solid black;
-        }
-
-        .cell:last-child {
-            border-right: 2px solid black;
-        }
-
-        /* Для пустых ячеек — оставляем текст "пустое" */
-        .empty {
-            color: rgba(255, 255, 255, 0.6);
-        }
-    </style>
+    <title>Styssie.developer — Портфолио</title>
+    <meta name="description" content="Создаю игры и приложения под заказ. Python, Flask, HTML, CSS, JS.">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Первая строка -->
-    <div class="header">
-        <div class="header-left">web-developer</div>
-        <div class="header-right">картинка</div>
-    </div>
+    <!-- Главный блок с двумя колонками -->
+    <section class="hero-section">
+        <!-- Левая колонка: текст -->
+        <div class="hero-text">
+            <h1>Styssie.developer</h1>
+            <p>Python, Flask, HTML, CSS, JS.</p>
+        </div>
 
-    <!-- Вторая строка -->
-    <div class="row">
-        <div class="cell">обо мне</div>
-        <div class="cell">мои навыки</div>
-        <div class="cell">контакты</div>
-    </div>
+        <!-- Правая колонка: изображение -->
+        <div class="hero-image">
+            <img src="images/coding.jpg" alt="Кодинг на ноутбуке">
+        </div>
+    </section>
 
-    <!-- Третья строка -->
-    <div class="row">
-        <div class="cell">проекты</div>
-        <div class="cell empty">пустое</div>
-        <div class="cell empty">пустое</div>
-    </div>
+    <!-- Навигация -->
+    <nav style="text-align: center; margin: 1rem 0;">
+        <a href="index.html" style="margin: 0 1rem; color: white; text-decoration: none;">Главная</a>
+        <a href="about.html" style="margin: 0 1rem; color: white; text-decoration: none;">Обо мне</a>
+        <a href="projects.html" style="margin: 0 1rem; color: white; text-decoration: none;">Проекты</a>
+        <a href="contact.html" style="margin: 0 1rem; color: white; text-decoration: none;">Контакты</a>
+    </nav>
 
-    <!-- Нижняя часть (если нужно — можно добавить) -->
-    <div style="flex: 1;"></div>
+    <main>
+        <section class="container">
+            <!-- Карточка "Обо мне" -->
+            <div class="card slide-in">
+                <div class="about-section">
+                    <h2><span class="typewriter">Обо мне</span></h2>
+                    <div class="about-content">
+                        <p><strong>Опыт работы</strong><br>
+                        На данный момент совмещаю обучение в университете с интенсивной проектной практикой. В рамках разработки полноценного приложения создал с нуля аркадную игру «Snake», реализовав весь цикл — от проектирования и написания кода до тестирования и релиза. Этот опыт позволил углубить понимание принципов объектно-ориентированного программирования, логики игровых механик и управления проектом.<br><br>
+                        <strong>Личные качества</strong><br>
+                        Ответственность и нацеленность на результат: способен доводить задачи до завершения в установленные сроки.<br>
+                        Коммуникабельность и командная работа: готов к конструктивному диалогу, умею ясно доносить идеи и учитывать обратную связь.<br>
+                        Стрессоустойчивость и адаптивность: сохраняю работоспособность в условиях сжатых сроков и быстро осваиваю новые инструменты.<br>
+                        Высокая обучаемость: активно самостоятельно изучаю технологии и методики, применяя их в практике.<br><br>
+                        <strong>Профессиональные навыки</strong><br>
+                        Языки и технологии: Python, SQL (базы данных), Flask (бэкенд-разработка), HTML/CSS/JavaScript (фронтенд).<br>
+                        Инструменты и платформы: Git / GitHub (ведение репозиториев, контроль версий, командная разработка).<br>
+                        Специализированные API: опыт работы с Canvas API для реализации графики и анимации в браузере.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка "Мои проекты" -->
+           <div class="card slide-in">
+                <div class="projects-section">
+                    <h2><span class="typewriter">Мои проекты</span></h2>
+                    <div class="projects-content">
+                        <div class="project-item">
+                            <h3>Змейка Styssie Game</h3>
+                            <p>Классическая змейка с квестами, скинами и таблицей лидеров</p>
+                            <a href="./snake-game">Играть в змейку</a>
+                        </div>
+                        <div class="project-item">
+                            <h3>PWA Приложение</h3>
+                            <p>Мобильная версия змейки</p>
+                            <a href="#">Смотреть</a>
+                        </div>
+                        <!-- Новый проект -->
+                        <div class="project-item">
+                            <h3>Проект с использованием SQL</h3>
+                            <p>Разработка базы данных для веб-платформы. PostgreSQL, триггеры, хранимые процедуры.</p>
+                            <a href="https://docs.google.com/document/d/1HZj1IVr1gqsJB2Q5z3d-FxUgu9BLhZEp/edit?usp=sharing&ouid=102333938774137555975&rtpof=true&sd=true" target="_blank">Смотреть работу</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Карточка "Контакты" -->
+        <div class="card slide-in">
+              <div class="contacts-section">
+                <h2><span class="typewriter">Контакты</span></h2>
+               <div class="contacts-content">
+              <p>Email: alexandr.1742005@gmail.com</p>
+            <p>Telegram: <a href="https://t.me/styssie">@styssie</a></p>
+          <p>GitHub: <a href="https://github.com/alexandr1742005-ai" target="_blank">alexandr1742005-ai</a></p>
+        </div>
+    </div>
+</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Александр. Все права защищены.</p>
+    </footer>
 </body>
 </html>
