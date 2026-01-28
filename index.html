@@ -193,8 +193,7 @@
         }
 
         .grid-item {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(20px);
+            position: relative;
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -202,40 +201,59 @@
             font-size: 2rem;
             font-weight: 700;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
-                        inset 0 0 20px rgba(50, 50, 50, 0.2);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             color: white;
             text-decoration: none;
-            position: relative;
             overflow: hidden;
             border: 1px solid rgba(80, 80, 80, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        /* Фон для каждой ячейки */
         .grid-item::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #a0a0a0, #808080, #606060);
-            background-size: 400% 400%;
-            z-index: -1;
-            border-radius: 22px;
-            animation: borderGlow 3s ease infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3; /* Уровень затемнения фона */
+            z-index: 1;
         }
 
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        /* Прозрачный слой поверх фона */
+        .grid-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 20, 20, 0.4); /* Прозрачный слой */
+            z-index: 2;
+            backdrop-filter: blur(10px);
         }
+
+        /* Текст поверх фона */
+        .grid-item > span {
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Фоны для каждой ячейки */
+        .grid-item:nth-child(1)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=About'); }
+        .grid-item:nth-child(2)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Skills'); }
+        .grid-item:nth-child(3)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Contact'); }
+        .grid-item:nth-child(4)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Projects'); }
+        .grid-item:nth-child(5)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Experience'); }
+        .grid-item:nth-child(6)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Empty'); }
 
         .grid-item:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(80, 80, 80, 0.4),
-                        inset 0 0 30px rgba(60, 60, 60, 0.3);
-            background: rgba(30, 30, 30, 0.8);
+            box-shadow: 0 30px 60px rgba(80, 80, 80, 0.4);
         }
 
         /* ==================== Футер ==================== */
@@ -309,11 +327,6 @@
             to { box-shadow: 0 0 40px rgba(80, 80, 80, 0.5); }
         }
 
-        .neon-border {
-            border: 2px solid;
-            border-image: linear-gradient(45deg, #a0a0a0, #808080) 1;
-        }
-
         /* ==================== Партиклы ==================== */
         .particles {
             position: fixed;
@@ -360,52 +373,6 @@
             from, to { border-color: transparent; }
             50% { border-color: #a0a0a0; }
         }
-
-        /* ==================== Стили для ссылок ==================== */
-        .gradient-link {
-            background: linear-gradient(135deg, #a0a0a0, #808080);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: bold;
-        }
-
-        /* ==================== Стили для кнопок ==================== */
-        .cta-button {
-            background: linear-gradient(135deg, #a0a0a0, #808080);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(80, 80, 80, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(100, 100, 100, 0.6);
-        }
-
-        /* ==================== Кастомные скроллбары ==================== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #a0a0a0, #808080);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #808080, #a0a0a0);
-        }
     </style>
 </head>
 <body>
@@ -432,12 +399,12 @@
 
     <!-- Сетка 3x2 -->
     <div class="main-grid">
-        <a href="about.html" class="grid-item">Обо мне</a>
-        <a href="skills.html" class="grid-item">Навыки</a>
-        <a href="contact.html" class="grid-item">Контакты</a>
-        <a href="projects.html" class="grid-item">Проекты</a>
-        <a href="experience.html" class="grid-item">Опыт</a>
-        <a href="#" class="grid-item">Пусто</a>
+        <a href="about.html" class="grid-item"><span>Обо мне</span></a>
+        <a href="skills.html" class="grid-item"><span>Навыки</span></a>
+        <a href="contact.html" class="grid-item"><span>Контакты</span></a>
+        <a href="projects.html" class="grid-item"><span>Проекты</span></a>
+        <a href="experience.html" class="grid-item"><span>Опыт</span></a>
+        <a href="#" class="grid-item"><span>Пусто</span></a>
     </div>
 
     <footer>
