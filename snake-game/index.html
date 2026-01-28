@@ -126,15 +126,7 @@
     </style>
 </head>
 <body>
-    <!-- Модальное окно для ввода имени -->
-    <div id="nameModal">
-        <div id="nameForm">
-            <h2>Введите ваше имя</h2>
-            <input type="text" id="nameInput" placeholder="Имя" maxlength="20">
-            <br>
-            <button id="startButton">Начать игру</button>
-        </div>
-    </div>
+
 
     <div class="header">
         <h1>styssie_game</h1>
@@ -536,49 +528,20 @@ if (score > 0 && score % 10 === 0) {
             }
         });
 
-        // Функция для получения имени пользователя
-        function getPlayerName() {
-            const savedName = localStorage.getItem('playerName');
-            if (savedName) {
-                playerName = savedName;
-                document.getElementById('nameModal').style.display = 'none';
-                resetGame();
-                gameActive = true;
-                window.requestAnimationFrame(gameLoop);
-            } else {
-                document.getElementById('nameModal').style.display = 'flex';
-            }
-        }
-
-        // Обработчик кнопки "Начать игру"
-        document.getElementById('startButton').addEventListener('click', () => {
-            const input = document.getElementById('nameInput');
-            playerName = input.value.trim();
-
-            if (playerName) {
-                // Сохраняем имя в localStorage
-                localStorage.setItem('playerName', playerName);
-                document.getElementById('nameModal').style.display = 'none';
-                resetGame();
-                gameActive = true;
-                window.requestAnimationFrame(gameLoop);
-            } else {
-                alert('Введите имя!');
-            }
-        });
-
-        // Запускаем игру
-        try {
-            loadBestScore();
-            getPlayerName();
-            window.requestAnimationFrame(gameLoop);
-        } catch (e) {
-            console.error('Ошибка при запуске игры:', e);
-            alert('Ошибка при запуске игры. Проверь консоль.');
-        }
+      
+       try {
+    loadBestScore();
+    resetGame();
+    gameActive = true;
+    window.requestAnimationFrame(gameLoop);
+} catch (e) {
+    console.error('Ошибка при запуске игры:', e);
+    alert('Ошибка при запуске игры. Проверь консоль.');
+}
     </script>
 </body>
 </html>
+
 
 
 
