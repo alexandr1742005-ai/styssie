@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 10% 20%, rgba(50, 50, 50, 0.1) 0%, transparent 20%),
-                        radial-gradient(circle at 90% 80%, rgba(30, 30, 30, 0.1) 0%, transparent 20%);
+                        radial(circle at 90% 80%, rgba(30, 30, 30, 0.1) 0%, transparent 20%);
             pointer-events: none;
             z-index: -1;
         }
@@ -127,53 +127,46 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* ==================== Навигация ==================== */
-        nav {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 0;
-            text-align: center;
-            position: relative;
-            z-index: 100;
-            border: 1px solid rgba(80, 80, 80, 0.3);
+        /* ==================== Блок "Обо мне" (вместо навигации) ==================== */
+        .about-intro {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
             margin: 0 6rem 3rem;
-            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        inset 0 0 20px rgba(50, 50, 50, 0.2);
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            animation: fadeInCard 1s ease-out;
         }
 
-        nav a {
-            color: #d0d0d0;
-            margin: 0 2rem;
-            text-decoration: none;
-            font-weight: 600;
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-intro h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff, #a0a0a0, #808080);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
+        }
+
+        .about-intro p {
             font-size: 1.4rem;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            position: relative;
-            overflow: hidden;
+            line-height: 1.8;
+            color: rgba(220, 220, 220, 0.9);
+            text-align: justify;
         }
 
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(120, 120, 120, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        nav a:hover::before {
-            left: 100%;
-        }
-
-        nav a:hover {
+        .about-intro strong {
             color: #a0a0a0;
-            background: rgba(50, 50, 50, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(80, 80, 80, 0.3);
+            font-weight: bold;
         }
 
         /* ==================== Сетка 3x2 ==================== */
@@ -208,7 +201,6 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Фон для каждой ячейки */
         .grid-item::before {
             content: '';
             position: absolute;
@@ -219,11 +211,10 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.3; /* Уровень затемнения фона */
+            opacity: 0.2;
             z-index: 1;
         }
 
-        /* Прозрачный слой поверх фона */
         .grid-item::after {
             content: '';
             position: absolute;
@@ -231,19 +222,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(20, 20, 20, 0.4); /* Прозрачный слой */
+            background: rgba(20, 20, 20, 0.4);
             z-index: 2;
             backdrop-filter: blur(10px);
         }
 
-        /* Текст поверх фона */
         .grid-item > span {
             position: relative;
             z-index: 3;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
-        /* Фоны для каждой ячейки */
+        /* Фоны для ячеек (можно заменить на свои изображения) */
         .grid-item:nth-child(1)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=About'); }
         .grid-item:nth-child(2)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Skills'); }
         .grid-item:nth-child(3)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Contact'); }
@@ -270,15 +260,6 @@
         }
 
         /* ==================== Адаптив ==================== */
-        @media (max-width: 1200px) {
-            .hero-section { padding: 3rem 4rem; }
-            .hero-text h1 { font-size: 4rem; }
-            .hero-text p { font-size: 2rem; }
-            .main-grid { margin: 0 4rem 3rem; height: 450px; }
-            nav { margin: 0 4rem 3rem; }
-            footer { margin: 3rem 4rem 0; }
-        }
-
         @media (max-width: 768px) {
             .hero-section {
                 flex-direction: column;
@@ -290,6 +271,14 @@
             .hero-text p { font-size: 1.5rem; }
             .hero-image img { max-width: 300px; }
 
+            .about-intro {
+                padding: 2rem;
+                margin: 0 1rem 2rem;
+            }
+
+            .about-intro h2 { font-size: 2rem; }
+            .about-intro p { font-size: 1.2rem; }
+
             .main-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(6, 1fr);
@@ -298,80 +287,7 @@
                 margin: 0 1rem 2rem;
             }
 
-            nav {
-                margin: 0 1rem 2rem;
-                flex-wrap: wrap;
-            }
-
-            nav a { margin: 0.5rem; font-size: 1rem; }
-
             footer { margin: 2rem 1rem 0; font-size: 1rem; }
-        }
-
-        /* ==================== Дополнительные эффекты ==================== */
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .glow {
-            animation: glowEffect 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glowEffect {
-            from { box-shadow: 0 0 20px rgba(100, 100, 100, 0.3); }
-            to { box-shadow: 0 0 40px rgba(80, 80, 80, 0.5); }
-        }
-
-        /* ==================== Партиклы ==================== */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(150, 150, 150, 0.5);
-            border-radius: 50%;
-            animation: particleFloat 3s linear infinite;
-        }
-
-        @keyframes particleFloat {
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* ==================== Типографика ==================== */
-        .typewriter {
-            overflow: hidden;
-            border-right: 0.15em solid #a0a0a0;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #a0a0a0; }
         }
     </style>
 </head>
@@ -389,13 +305,23 @@
         </div>
     </section>
 
-    <!-- Навигация -->
-    <nav>
-        <a href="index.html">Главная</a>
-        <a href="about.html">Обо мне</a>
-        <a href="projects.html">Проекты</a>
-        <a href="contact.html">Контакты</a>
-    </nav>
+    <!-- Блок "Обо мне" (вместо навигации) -->
+    <div class="about-intro">
+        <h2>Обо мне</h2>
+        <p>
+            <strong>Опыт работы</strong><br>
+            Здавствуйте, меня зовут Александр. На данный момент совмещаю обучение в университете с интенсивной проектной практикой. В рамках разработки полноценного приложения создал с нуля аркадную игру «Snake», реализовав весь цикл — от проектирования и написания кода до тестирования и релиза. Этот опыт позволил углубить понимание принципов объектно-ориентированного программирования, логики игровых механик и управления проектом.<br><br>
+            <strong>Личные качества</strong><br>
+            Ответственность и нацеленность на результат: способен доводить задачи до завершения в установленные сроки.<br>
+            Коммуникабельность и командная работа: готов к конструктивному диалогу, умею ясно доносить идеи и учитывать обратную связь.<br>
+            Стрессоустойчивость и адаптивность: сохраняю работоспособность в условиях сжатых сроков и быстро осваиваю новые инструменты.<br>
+            Высокая обучаемость: активно самостоятельно изучаю технологии и методики, применяя их в практике.<br><br>
+            <strong>Профессиональные навыки</strong><br>
+            Языки и технологии: Python, SQL (базы данных), Flask (бэкенд-разработка), HTML/CSS/JavaScript (фронтенд).<br>
+            Инструменты и платформы: Git / GitHub (ведение репозиториев, контроль версий, командная разработка).<br>
+            Специализированные API: опыт работы с Canvas API для реализации графики и анимации в браузере.
+        </p>
+    </div>
 
     <!-- Сетка 3x2 -->
     <div class="main-grid">
@@ -433,17 +359,16 @@
         // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
-        });
 
-        // Добавляем эффекты при наведении на карточки
-        const gridItems = document.querySelectorAll('.grid-item');
-        gridItems.forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'translateY(-10px) scale(1.05)';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'translateY(0) scale(1)';
+            // Анимация при наведении на карточки
+            const gridItems = document.querySelectorAll('.grid-item');
+            gridItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateY(-10px) scale(1.05)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateY(0) scale(1)';
+                });
             });
         });
     </script>
