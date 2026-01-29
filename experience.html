@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опыт — Styssie.developer</title>
+    <style>
+        /* ==================== Основные стили (как в skills.html) ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2a2a2a);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(50, 50, 50, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(30, 30, 30, 0.1) 0%, transparent 20%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2a2a2a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ==================== Навигация ==================== */
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            margin: 2rem 6rem 3rem;
+            border-radius: 15px;
+        }
+
+        nav a {
+            color: #d0d0d0;
+            margin: 0 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            color: #a0a0a0;
+            background: rgba(50, 50, 50, 0.3);
+        }
+
+        /* ==================== Заголовок ==================== */
+        .main-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 3rem 0;
+            background: linear-gradient(135deg, #ffffff, #a0a0a0, #808080);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(100, 100, 100, 0.5);
+        }
+
+        /* ==================== Список опыта ==================== */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 0 6rem 3rem;
+        }
+
+        .experience-item {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #d0d0d0;
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(30, 30, 30, 0.8);
+            transform: translateX(5px);
+            border-left-color: #a78bfa;
+        }
+
+        /* ==================== Футер ==================== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: rgba(200, 200, 200, 0.7);
+            margin: 3rem 6rem 0;
+            border-radius: 15px;
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            font-size: 1.2rem;
+        }
+
+        /* ==================== Кнопка "Вернуться" ==================== */
+        .back-button {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .back-button a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button a:hover {
+            color: #808080;
+            text-shadow: 0 0 10px rgba(160, 160, 160, 0.5);
+        }
+
+        /* ==================== Адаптив ==================== */
+        @media (max-width: 768px) {
+            nav { margin: 1rem 1rem 2rem; }
+            nav a { margin: 0.5rem; font-size: 1rem; }
+            .main-title { font-size: 2.5rem; margin: 2rem 0; }
+            .experience-list { margin: 0 1rem 2rem; }
+            .experience-item { padding: 1.2rem 1.5rem; font-size: 1.4rem; }
+            footer { margin: 2rem 1rem 0; font-size: 1rem; }
+            .back-button a { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Навигация -->
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="about.html">Обо мне</a>
+ <a href="skills.html">Навыки</a>
+        <a href="experience.html">Опыт</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+
+    <!-- Заголовок -->
+    <h1 class="main-title">Опыт</h1>
+
+    <!-- Список опыта -->
+    <div class="experience-list">
+        <!-- ✅ ВПИСЫВАЙ СЮДА СВОЙ ОПЫТ — КАЖДЫЙ ЭЛЕМЕНТ = ОДНА СТРОЧКА -->
+        <div class="experience-item">Разработка игр (Snake, PWA)</div>
+        <div class="experience-item">Бэкенд на Flask + PostgreSQL</div>
+        <div class="experience-item">Работа с Canvas API и анимацией</div>
+        <div class="experience-item">Командная разработка (Git / GitHub)</div>
+        <div class="experience-item">Участие в учебных проектах</div>
+        <!-- 🔁 Добавляй новые строки так же: <div class="experience-item">...</div> -->
+    </div>
+
+    <!-- Кнопка "Вернуться" -->
+    <div class="back-button">
+        <a href="index.html">← Вернуться на главную</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Александр. Все права защищены.</p>
+    </footer>
+
+    <!-- Анимация появления -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.experience-item');
+            items.forEach((item, i) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 200 + i * 150);
+            });
+        });
+    </script>
+</body>
+</html>
