@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 10% 20%, rgba(50, 50, 50, 0.1) 0%, transparent 20%),
-                        radial(circle at 90% 80%, rgba(30, 30, 30, 0.1) 0%, transparent 20%);
+                        radial-gradient(circle at 90% 80%, rgba(30, 30, 30, 0.1) 0%, transparent 20%);
             pointer-events: none;
             z-index: -1;
         }
@@ -145,8 +145,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Убрали заголовок h2 */
-
         .about-intro p {
             font-size: 1.4rem;
             line-height: 1.8;
@@ -159,15 +157,24 @@
             font-weight: bold;
         }
 
-        /* ==================== Сетка 3x2 ==================== */
+        /* ==================== Сетка 4 в строку (десктоп) / 2×2 (моб) ==================== */
         .main-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr;
             gap: 2rem;
             margin: 0 6rem 3rem;
-            height: 500px;
+            height: 300px;
             animation: fadeInGrid 1s ease-out 0.5s both;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                height: auto;
+                gap: 1.5rem;
+            }
         }
 
         @keyframes fadeInGrid {
@@ -223,13 +230,11 @@
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
-        /* Фоны для ячеек (можно заменить на свои изображения) */
+        /* Фны для ячеек (можно заменить на свои) */
         .grid-item:nth-child(1)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Skills'); }
         .grid-item:nth-child(2)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Contact'); }
         .grid-item:nth-child(3)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Projects'); }
         .grid-item:nth-child(4)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Experience'); }
-        .grid-item:nth-child(5)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Empty'); }
-        .grid-item:nth-child(6)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=About'); }
 
         .grid-item:hover {
             transform: translateY(-10px) scale(1.05);
@@ -248,36 +253,6 @@
             border: 1px solid rgba(80, 80, 80, 0.3);
             font-size: 1.2rem;
         }
-
-        /* ==================== Адаптив ==================== */
-        @media (max-width: 768px) {
-            .hero-section {
-                flex-direction: column;
-                padding: 2rem 1rem;
-                gap: 2rem;
-            }
-
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-text p { font-size: 1.5rem; }
-            .hero-image img { max-width: 300px; }
-
-            .about-intro {
-                padding: 2rem;
-                margin: 0 1rem 2rem;
-            }
-
-            .about-intro p { font-size: 1.2rem; }
-
-            .main-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(6, 1fr);
-                height: auto;
-                gap: 1.5rem;
-                margin: 0 1rem 2rem;
-            }
-
-            footer { margin: 2rem 1rem 0; font-size: 1rem; }
-        }
     </style>
 </head>
 <body>
@@ -294,7 +269,7 @@
         </div>
     </section>
 
-    <!-- Блок "Обо мне" (вместо навигации) -->
+    <!-- Блок "Обо мне" -->
     <div class="about-intro">
         <p>
             <strong>Опыт работы</strong><br>
@@ -311,14 +286,12 @@
         </p>
     </div>
 
-    <!-- Сетка 3x2 -->
+    <!-- Сетка 4 ячейки -->
     <div class="main-grid">
         <a href="skills.html" class="grid-item"><span>Навыки</span></a>
         <a href="contact.html" class="grid-item"><span>Контакты</span></a>
         <a href="projects.html" class="grid-item"><span>Проекты</span></a>
         <a href="experience.html" class="grid-item"><span>Опыт</span></a>
-        <a href="#" class="grid-item"><span>Пусто</span></a>
-        <a href="about.html" class="grid-item"><span>Обо мне</span></a>
     </div>
 
     <footer>
@@ -327,7 +300,7 @@
 
     <!-- Скрипты -->
     <script>
-        // Добавляем частицы
+        // Добавляем частицы (опционально)
         function createParticles() {
             const particlesContainer = document.createElement('div');
             particlesContainer.className = 'particles';
@@ -344,11 +317,9 @@
             }
         }
 
-        // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
 
-            // Анимация при наведении на карточки
             const gridItems = document.querySelectorAll('.grid-item');
             gridItems.forEach(item => {
                 item.addEventListener('mouseenter', () => {
