@@ -34,28 +34,33 @@
             display: block;
         }
 
-        .ui-panel {
-            position: absolute;
-            top: 15px;
-            left: 15px;
+        /* Счёт, уровень, скорость — вне игрового поля */
+        .stats-panel {
+            display: flex;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 1.5rem;
+        }
+
+        .stat-box {
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 15px;
-            z-index: 100;
+            border-radius: 15px;
+            padding: 15px 25px;
             border: 2px solid #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .stats {
-            display: flex;
-            gap: 15px;
-            font-size: 16px;
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 5px;
         }
 
-        .stat {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 10px;
-            border-radius: 5px;
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #a78bfa;
         }
 
         .controls {
@@ -81,32 +86,43 @@
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .achievements {
+        /* Ачивка — лучше визуал, не мешает */
+        .achievement {
             position: fixed;
-            top: 50%;
+            top: 20px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
-            display: none;
             z-index: 1000;
+            display: none;
             border: 3px solid gold;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: slideDown 0.5s ease-out, fadeOut 0.5s ease-out 1.5s forwards;
+        }
+
+        @keyframes slideDown {
+            from { top: -100px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
 
         .achievement-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: gold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .achievement-desc {
             font-size: 1.2rem;
             color: white;
-            margin-bottom: 20px;
         }
 
         @media (max-width: 768px) {
@@ -116,30 +132,53 @@
                 max-width: 400px;
                 max-height: 400px;
             }
+
+            .stats-panel {
+                flex-direction: column;
+                gap: 15px;
+                font-size: 1.2rem;
+            }
+
+            .stat-box {
+                padding: 10px 20px;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Статистика вне игрового поля -->
+    <div class="stats-panel">
+        <div class="stat-box">
+            <div class="stat-label">Счёт</div>
+            <div class="stat-value" id="score">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Уровень</div>
+            <div class="stat-value" id="level">1</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Скорость</div>
+            <div class="stat-value" id="speed">1</div>
+        </div>
+    </div>
+
     <div class="game-container">
         <canvas id="gameCanvas" width="600" height="600"></canvas>
-        
-        <div class="ui-panel">
-            <div class="stats">
-                <div class="stat">Счёт: <span id="score">0</span></div>
-                <div class="stat">Уровень: <span id="level">1</span></div>
-                <div class="stat">Скорость: <span id="speed">1</span></div>
-            </div>
-        </div>
-
-        <div class="achievements" id="achievement">
-            <h3 class="achievement-title">🎉 Достижение!</h3>
-            <p class="achievement-desc" id="achievement-text">Новый уровень!</p>
-        </div>
     </div>
 
     <div class="controls">
         <button onclick="resetGame()">🔄 Новая игра</button>
         <button onclick="togglePause()">⏸️ Пауза</button>
+    </div>
+
+    <!-- Ачивка -->
+    <div class="achievement" id="achievement">
+        <h3 class="achievement-title">🎉 Новый уровень!</h3>
+        <p class="achievement-desc" id="achievement-text">Уровень 2!</p>
     </div>
 
     <script>
@@ -255,38 +294,26 @@
             ctx.fill();
         }
 
-        // Рисование еды
+        // Рисование реалистичного яблока
         function drawFood() {
             const centerX = food.x * GRID_SIZE + GRID_SIZE / 2;
             const centerY = food.y * GRID_SIZE + GRID_SIZE / 2;
 
-            // Яблоко
+            // Тело яблока
             ctx.fillStyle = '#ef4444';
             ctx.beginPath();
             ctx.arc(centerX, centerY, GRID_SIZE / 2, 0, Math.PI * 2);
             ctx.fill();
-            
-            // Белые точки
-            ctx.fillStyle = 'white';
-            ctx.beginPath();
-            ctx.arc(centerX - GRID_SIZE / 4, centerY - GRID_SIZE / 4, GRID_SIZE / 8, 0, Math.PI * 2);
-            ctx.fill();
 
-            ctx.beginPath();
-            ctx.arc(centerX + GRID_SIZE / 4, centerY - GRID_SIZE / 4, GRID_SIZE / 8, 0, Math.PI * 2);
-            ctx.fill();
+            // "Хвостик" яблока
+            ctx.fillStyle = '#78350f';
+            ctx.fillRect(centerX - 2, food.y * GRID_SIZE, 4, 6);
 
+            // Блеск на яблоке
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
             ctx.beginPath();
-            ctx.arc(centerX, centerY + GRID_SIZE / 4, GRID_SIZE / 8, 0, Math.PI * 2);
+            ctx.arc(centerX - GRID_SIZE / 6, centerY - GRID_SIZE / 6, GRID_SIZE / 6, 0, Math.PI * 2);
             ctx.fill();
-
-            // Стебелёк
-            ctx.strokeStyle = '#8B4513';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY - GRID_SIZE / 2);
-            ctx.lineTo(centerX + GRID_SIZE / 6, centerY - GRID_SIZE / 2 - GRID_SIZE / 4);
-            ctx.stroke();
         }
 
         // Движение змейки
@@ -319,7 +346,7 @@
                 if (score > 0 && score % 10 === 0) {
                     level = Math.floor(score / 10) + 1;
                     moveInterval = Math.max(BASE_SPEED - (level - 1) * SPEED_INCREASE, 50);
-                    showAchievement(`🚀 Уровень ${level}!`);
+                    showAchievement(`Уровень ${level}!`);
                 }
 
                 generateFood();
@@ -330,7 +357,7 @@
             updateUI();
         }
 
-        // Игровой цикл
+        // Игровой цикл (плавное движение)
         function gameLoop(currentTime) {
             requestAnimationFrame(gameLoop);
 
@@ -358,7 +385,7 @@
             initGame();
         }
 
-        // Показ достижения
+        // Показ достижения (не перекрывает поле)
         function showAchievement(text) {
             const achievement = document.getElementById('achievement');
             document.getElementById('achievement-text').textContent = text;
@@ -380,11 +407,12 @@
             showAchievement(paused ? '⏸️ Пауза' : '▶️ Продолжение');
         }
 
-        // Управление
+        // Управление: стрелки, WASD, ЦФЫВ
         document.addEventListener('keydown', e => {
             if (!gameActive || paused) return;
 
             switch(e.code) {
+                // СТРЕЛКИ
                 case 'ArrowUp':
                     if (dy === 0) { dx = 0; dy = -1; }
                     break;
@@ -395,6 +423,34 @@
                     if (dx === 0) { dx = -1; dy = 0; }
                     break;
                 case 'ArrowRight':
+                    if (dx === 0) { dx = 1; dy = 0; }
+                    break;
+
+                // WASD
+                case 'KeyW':
+                    if (dy === 0) { dx = 0; dy = -1; }
+                    break;
+                case 'KeyS':
+                    if (dy === 0) { dx = 0; dy = 1; }
+                    break;
+                case 'KeyA':
+                    if (dx === 0) { dx = -1; dy = 0; }
+                    break;
+                case 'KeyD':
+                    if (dx === 0) { dx = 1; dy = 0; }
+                    break;
+
+                // ЦФЫВ (русская раскладка)
+                case 'KeyC': // Ц
+                    if (dy === 0) { dx = 0; dy = -1; }
+                    break;
+                case 'KeyF': // Ф
+                    if (dy === 0) { dx = 0; dy = 1; }
+                    break;
+                case 'KeyY': // Ы
+                    if (dx === 0) { dx = -1; dy = 0; }
+                    break;
+                case 'KeyV': // В
                     if (dx === 0) { dx = 1; dy = 0; }
                     break;
             }
