@@ -56,37 +56,34 @@
         /* ==================== Шапка ==================== */
         .hero-section {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 4rem 6rem;
-            margin-bottom: 3rem;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
             z-index: 10;
         }
 
-        .hero-text {
-            flex: 1;
-            text-align: left;
-        }
-
         .hero-text h1 {
-            font-size: 5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff, #a0a0a0, #808080);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 1rem;
-            text-shadow: 0 0 30px rgba(100, 100, 100, 0.5);
+            text-shadow: 0 0 20px rgba(100, 100, 100, 0.5);
             animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(100, 100, 100, 0.5); }
-            to { text-shadow: 0 0 40px rgba(80, 80, 80, 0.8); }
+            from { text-shadow: 0 0 15px rgba(100, 100, 100, 0.5); }
+            to { text-shadow: 0 0 30px rgba(80, 80, 80, 0.8); }
         }
 
         .hero-text p {
-            font-size: 2.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
             background: linear-gradient(135deg, #a0a0a0, #808080);
             -webkit-background-clip: text;
@@ -101,101 +98,102 @@
         }
 
         .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            max-width: 300px;
             animation: float 6s ease-in-out infinite;
         }
 
         .hero-image img {
             width: 100%;
-            max-width: 600px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
-                        0 0 60px rgba(100, 100, 100, 0.3);
-            border: 3px solid rgba(80, 80, 80, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(100, 100, 100, 0.3);
+            border: 2px solid rgba(80, 80, 80, 0.3);
             transition: transform 0.3s ease;
         }
 
         .hero-image img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
         }
 
-        /* ==================== Блок "Обо мне" (вместо навигации) ==================== */
+        /* ==================== Блок "Обо мне" ==================== */
         .about-intro {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 0 6rem 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
-                        inset 0 0 20px rgba(50, 50, 50, 0.2);
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 1.8rem 1.2rem;
+            margin: 0 1.2rem 2rem;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(80, 80, 80, 0.3);
-            animation: fadeInCard 1s ease-out;
-        }
-
-        @keyframes fadeInCard {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: fadeInCard 0.8s ease-out;
         }
 
         .about-intro p {
-            font-size: 1.4rem;
-            line-height: 1.8;
-            color: rgba(220, 220, 220, 0.9);
-            text-align: justify;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: rgba(220, 220, 220, 0.95);
+            text-align: left;
         }
 
         .about-intro strong {
-            color: #a0a0a0;
+            color: #b0b0b0;
             font-weight: bold;
+            display: block;
+            margin: 0.8em 0 0.4em;
         }
 
-        /* ==================== Сетка 4 в строку (десктоп) / 2×2 (моб) ==================== */
+        /* ==================== Сетка — АДАПТИВНАЯ ==================== */
         .main-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 1fr;
-            gap: 2rem;
-            margin: 0 6rem 3rem;
-            height: 300px;
-            animation: fadeInGrid 1s ease-out 0.5s both;
+            gap: 1.4rem;
+            margin: 0 1.2rem 2rem;
+            animation: fadeInGrid 0.8s ease-out 0.3s both;
         }
 
-        @media (max-width: 768px) {
+        /* Мобильные (до 480px): 1 колонка */
+        @media (max-width: 480px) {
             .main-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(2, 1fr);
-                height: auto;
-                gap: 1.5rem;
+                grid-template-columns: 1fr;
             }
         }
 
-        @keyframes fadeInGrid {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* От 481px до 768px: 2 колонки */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Десктоп: 4 колонки */
+        @media (min-width: 769px) {
+            .main-grid {
+                grid-template-columns: repeat(4, 1fr);
+                margin: 0 6rem 3rem;
+                height: 300px;
+            }
         }
 
         .grid-item {
             position: relative;
-            border-radius: 20px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             text-align: center;
             color: white;
             text-decoration: none;
             overflow: hidden;
             border: 1px solid rgba(80, 80, 80, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 80px;
+            padding: 1rem;
         }
 
         .grid-item::before {
@@ -208,7 +206,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.2;
+            opacity: 0.15;
             z-index: 1;
         }
 
@@ -219,39 +217,58 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(20, 20, 20, 0.4);
+            background: rgba(20, 20, 20, 0.5);
             z-index: 2;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
         .grid-item > span {
             position: relative;
             z-index: 3;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+            font-size: 1.4rem;
         }
 
-        /* Фны для ячеек (можно заменить на свои) */
+        /* Фоны для ячеек */
         .grid-item:nth-child(1)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Skills'); }
         .grid-item:nth-child(2)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Contact'); }
         .grid-item:nth-child(3)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Projects'); }
         .grid-item:nth-child(4)::before { background-image: url('https://placehold.co/600x600/000000/FFFFFF?text=Experience'); }
 
         .grid-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(80, 80, 80, 0.4);
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 16px 32px rgba(80, 80, 80, 0.4);
         }
 
         /* ==================== Футер ==================== */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 1.4rem;
             background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             color: rgba(200, 200, 200, 0.7);
-            margin: 3rem 6rem 0;
-            border-radius: 15px;
+            margin: 2rem 1.2rem 1.5rem;
+            border-radius: 12px;
             border: 1px solid rgba(80, 80, 80, 0.3);
-            font-size: 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInGrid {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Убираем частицы на мобильных (для производительности) */
+        @media (max-width: 768px) {
+            .particles {
+                display: none !important;
+            }
         }
     </style>
 </head>
